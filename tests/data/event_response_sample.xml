@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response version="2.0" AccountName="10001">
+  <Event>
+    <Purchase DPGReferenceId="239389" TransactionId="ordernumber/01">
+      <PaymentMethod name="SW">
+        <ReferenceId>56235634</ReferenceId>
+        <ResponseCode>1101</ResponseCode>
+        <ResponseDescription>APPROVED</ResponseDescription>
+        <ServiceType>LTV_BANK</ServiceType>
+        <VK_REC_ACC>12345678</VK_REC_ACC>
+        <VK_REC_NAME>TEST MERCHANT</VK_REC_NAME>
+        <VK_SND_ID>1234</VK_SND_ID>
+        <VK_SND_ACC>12345678</VK_SND_ACC>
+        <VK_SND_NAME>TEST CLIENT</VK_SND_NAME>
+        <VK_MSG>Message from Processor</VK_MSG>
+        <VK_T_DATE>15.11.2013</VK_T_DATE>
+        <VK_LANG>ENG</VK_LANG>
+      </PaymentMethod>
+      <Status>AUTHORISED</Status>
+      <Amount CurrencyCode="978" Exponent="2">500</Amount>
+      <RiskResult>
+        <StatusCode>100</StatusCode>
+        <StatusDescription><![CDATA[No Risk]]></StatusDescription>
+      </RiskResult>
+      <RecommendedClientMessage><![CDATA[transaction…]]></RecommendedClientMessage>
+    </Purchase>
+  </Event>
+</Response>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+  <time>12345454</time>
+  <reason>ACCEPTED</reason>
+  <HpsTxn>
+    <AuthAttempts>
+      <Attempt>
+        <datacash_reference>3700900010241729</datacash_reference>
+        <dc_response>1</dc_response>
+        <reason>ACCEPTED</reason>
+      </Attempt>
+    </AuthAttempts>
+  </HpsTxn>
+  <datacash_reference>3300900010288021</datacash_reference>
+  <merchantreference>ordernumber/01</merchantreference>
+  <information>You have queried a Full-HPS transaction, where at least one payment attempt has been made and the card details are waiting to be collected</information>
+  <mode>LIVE</mode>
+  <status>1</status>
+</Response>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Request>
+  <Authentication>
+    <client>********</client>
+    <password>********</password>
+  </Authentication>
+  <Transaction>
+    <HistoricTxn>
+      <method>query</method>
+      <reference>3700900010241729</reference>
+    </HistoricTxn>
+  </Transaction>
+</Request>

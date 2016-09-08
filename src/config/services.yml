@@ -1,0 +1,46 @@
+services:
+    pg.serializer:
+        class: SwedbankPaymentPortal\Serializer
+
+    pg.network:
+        class: SwedbankPaymentPortal\Network
+
+    pg.banklink.communication:
+        class: SwedbankPaymentPortal\BankLink\Communication
+        arguments: ["@pg.serializer", "@pg.network", "@pg.sensitive_data_cleanup"]
+
+    pg.sensitive_data_cleanup:
+        class: SwedbankPaymentPortal\SensitiveDataCleanup
+
+    pg.serialization_subscriber:
+        class: SwedbankPaymentPortal\BankLink\Listeners\SerializationSubscriber
+        tags:
+            -  { name: serializer.subscriber }
+
+    pg.cc.hcc_communication:
+        class: SwedbankPaymentPortal\CC\HCCService\Communication
+        arguments: ["@pg.serializer", "@pg.network", "@pg.sensitive_data_cleanup"]
+
+    pg.cc.hps_communication:
+        class: SwedbankPaymentPortal\CC\HPSService\Communication
+        arguments: ["@pg.serializer", "@pg.network", "@pg.sensitive_data_cleanup"]
+
+    pg.paypal.communication:
+        class: SwedbankPaymentPortal\PayPal\Communication
+        arguments: ["@pg.serializer", "@pg.network", "@pg.sensitive_data_cleanup"]
+
+    pg.cc.hcc_service:
+        class: SwedbankPaymentPortal\CC\HCCService\HCCService
+        arguments: ["%service_options%", "@pg.cc.hcc_communication", "@pg.serializer"]
+
+    pg.cc.hps_service:
+        class: SwedbankPaymentPortal\CC\HPSService\HPSService
+        arguments: ["%service_options%", "@pg.cc.hps_communication", "@pg.serializer"]
+
+    pg.paypal_service:
+        class: SwedbankPaymentPortal\PayPal\PayPalService
+        arguments: ["%service_options%", "@pg.paypal.communication", "@pg.serializer"]
+
+    pg.banklink_service:
+        class: SwedbankPaymentPortal\BankLink\BankLinkService
+        arguments: ["%service_options%", "@pg.banklink.communication", "@pg.serializer"]

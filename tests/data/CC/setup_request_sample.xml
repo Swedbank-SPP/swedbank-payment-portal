@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Request version="2">
+  <Authentication>
+    <password>********</password>
+    <client>********</client>
+  </Authentication>
+  <Transaction>
+    <TxnDetails>
+      <merchantreference>SPPtestHCC_1462531357</merchantreference>
+      <amount currency="EUR">1</amount>
+    </TxnDetails>
+    <HpsTxn>
+      <page_set_id>164</page_set_id>
+      <method>setup</method>
+      <return_url>https://www.sppshop.eu/spptest/hcc_request.php</return_url>
+      <expiry_url>http://www.example.com/expiry.html</expiry_url>
+      <error_url>https://www.sppshop.eu/spptest/card_error.php</error_url>
+      <DynamicData>
+        <dyn_data_4>https://www.sppshop.eu/spptest/index.php</dyn_data_4>
+      </DynamicData>
+    </HpsTxn>
+  </Transaction>
+</Request>

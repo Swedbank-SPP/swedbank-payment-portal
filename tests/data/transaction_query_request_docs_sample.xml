@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Request>
+  <Authentication>
+    <password>********</password>
+    <client>123</client>
+  </Authentication>
+  <Transaction>
+    <APMTxn>
+      <method>transaction_query</method>
+      <payment_method>SW</payment_method>
+      <transaction_type>purchase</transaction_type>
+      <transaction_id>P_061b8d8</transaction_id>
+      <AlternativePayment version="2"/>
+    </APMTxn>
+  </Transaction>
+</Request>

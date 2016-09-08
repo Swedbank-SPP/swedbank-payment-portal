@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response version="2">
+  <time>1462965245</time>
+  <reason>ACCEPTED</reason>
+  <CardTxn>
+    <Cv2Avs>
+      <cv2avs_status>SECURITY CODE MATCH ONLY</cv2avs_status>
+    </Cv2Avs>
+    <ThreeDSecure>
+      <aav>AAABBDAkUUYpYUYpZSRQAAAAAAA=</aav>
+      <cardholder_registered>yes</cardholder_registered>
+      <cavvAlgorithm>2</cavvAlgorithm>
+      <eci>05</eci>
+      <xid>MDAwMDAwMDAwMDAwMTM4MDQ0NzU=</xid>
+    </ThreeDSecure>
+    <authcode>ABCDEF</authcode>
+    <card_scheme>VISA</card_scheme>
+  </CardTxn>
+  <MAC>
+    <outcome>ACCEPT</outcome>
+  </MAC>
+  <Risk>
+    <action_response>
+      <bankresult_response>
+        <cpi_value>testcpi1</cpi_value>
+        <response_code>00</response_code>
+        <response_message>Successful</response_message>
+        <transaction_id>3000900013804475</transaction_id>
+      </bankresult_response>
+      <screening_response>
+        <additional_messages>
+          <message>test</message>
+        </additional_messages>
+        <cpi_value>testcpi2</cpi_value>
+        <response_code>00</response_code>
+        <response_message>Transaction Approved</response_message>
+        <transaction_id>3000900013804475</transaction_id>
+      </screening_response>
+    </action_response>
+  </Risk>
+  <acquirer>Swedbank Baltic Latvia</acquirer>
+  <datacash_reference>3000900013804475</datacash_reference>
+  <extended_response_message>Approved, OK</extended_response_message>
+  <extended_status>000</extended_status>
+  <merchantreference>3000900013804475</merchantreference>
+  <mid>1000000000</mid>
+  <mode>LIVE</mode>
+  <status>1</status>
+</Response>

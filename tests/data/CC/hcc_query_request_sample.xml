@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Request version="2">
+  <Authentication>
+    <password>gDarz27q</password>
+    <client>88120987</client>
+  </Authentication>
+  <Transaction>
+    <HistoricTxn>
+      <method>query</method>
+      <reference>3000900013804475</reference>
+    </HistoricTxn>
+  </Transaction>
+</Request>

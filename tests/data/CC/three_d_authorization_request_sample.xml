@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Request version="2">
+  <Authentication>
+    <password>********</password>
+    <client>********</client>
+  </Authentication>
+  <Transaction>
+    <HistoricTxn>
+      <reference>4600204433138438</reference>
+      <pares_message>…IZqN7pJXQWuzaaHTq0WCj2tqKjP8GOH5JFBOQ7/3J6</pares_message>
+      <method>threedsecure_authorization_request</method>
+    </HistoricTxn>
+  </Transaction>
+</Request>

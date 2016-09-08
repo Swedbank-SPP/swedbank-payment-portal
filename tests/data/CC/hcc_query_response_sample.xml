@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response version="2">
+  <time>1462965255</time>
+  <reason>ACCEPTED</reason>
+  <QueryTxnResult>
+    <Card>
+      <Cv2Avs>
+        <cv2avs_status>SECURITY CODE MATCH ONLY</cv2avs_status>
+      </Cv2Avs>
+      <card_category>Unknown</card_category>
+      <expirydate>01/17</expirydate>
+      <issuer>Unknown</issuer>
+      <pan>444433******1111</pan>
+      <scheme>VISA</scheme>
+      <token>E95316CD5E381C5032C9B77B90EC4F90F77C88AE</token>
+    </Card>
+    <MAC>
+      <outcome>ACCEPT</outcome>
+    </MAC>
+    <ThreeDSecure>
+      <CAVV>AAABBDAkUUYpYUYpZSRQAAAAAAA=</CAVV>
+      <XID>MDAwMDAwMDAwMDAwMTM4MDQ0NzU=</XID>
+      <cardholder_registered>yes</cardholder_registered>
+      <eci>05</eci>
+    </ThreeDSecure>
+    <acquirer>Swedbank Baltic Latvia</acquirer>
+    <authcode>ABCDEF</authcode>
+    <datacash_reference>3000900013804475</datacash_reference>
+    <environment>ecomm</environment>
+    <fulfill_date>2016-05-11 12:13:59</fulfill_date>
+    <fulfill_timestamp>1462965239</fulfill_timestamp>
+    <merchant_reference>SPPtestHCC_1462965207</merchant_reference>
+    <reason>ACCEPTED</reason>
+    <sent>Settled</sent>
+    <status>1</status>
+    <transaction_date>2016-05-11 12:13:59</transaction_date>
+    <transaction_timestamp>1462965239</transaction_timestamp>
+  </QueryTxnResult>
+  <Risk>
+    <action_response>
+      <bankresult_response>
+        <cpi_value>testcpi1</cpi_value>
+        <response_code>00</response_code>
+        <response_message>Successful</response_message>
+        <transaction_id>3000900013804475</transaction_id>
+      </bankresult_response>
+      <screening_response>
+        <additional_messages>
+          <message>test</message>
+        </additional_messages>
+        <cpi_value>testcpi2</cpi_value>
+        <response_code>00</response_code>
+        <response_message>Transaction Approved</response_message>
+        <transaction_id>3000900013804475</transaction_id>
+      </screening_response>
+    </action_response>
+  </Risk>
+  <mode>LIVE</mode>
+  <status>1</status>
+</Response>

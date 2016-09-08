@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response version="2">
+  <time>1462778649</time>
+  <reason>3DS Payer Verification Required</reason>
+  <acquirer>Swedbank Baltic Latvia</acquirer>
+  <datacash_reference>3600900013801799</datacash_reference>
+  <merchantreference>SPPtestHCC_1462778604</merchantreference>
+  <mid>1000000000</mid>
+  <mode>LIVE</mode>
+  <status>150</status>
+  <CardTxn>
+    <ThreeDSecure>
+      <acs_url>https://accreditation.datacash.com/acs-acq_a</acs_url>
+      <pareq_message>bla</pareq_message>
+    </ThreeDSecure>
+    <card_scheme>VISA</card_scheme>
+    <token>E95316CD5E381C5032C9B77B90EC4F90F77C88AE</token>
+  </CardTxn>
+</Response>

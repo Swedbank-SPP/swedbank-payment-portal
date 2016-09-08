@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response version="2">
+  <time>1452249333</time>
+  <reason>ACCEPTED</reason>
+  <PayPalTxn>
+    <ack>Success</ack>
+    <amt>10.00</amt>
+    <build>18308778</build>
+    <correlationid>d675c542912e3</correlationid>
+    <currencycode>EUR</currencycode>
+    <errorcode>0</errorcode>
+    <insuranceoptionselected>false</insuranceoptionselected>
+    <ordertime>2016-01-08T10:35:36Z</ordertime>
+    <paymentstatus>Pending</paymentstatus>
+    <paymenttype>instant</paymenttype>
+    <pendingreason>multicurrency</pendingreason>
+    <protectioneligibility>Eligible</protectioneligibility>
+    <protectioneligibilitytype>ItemNotReceivedEligible,UnauthorizedPaymentEligible</protectioneligibilitytype>
+    <reasoncode>None</reasoncode>
+    <securemerchantaccountid>ZSB25R5CXNMJY</securemerchantaccountid>
+    <shippingoptionisdefault>false</shippingoptionisdefault>
+    <successpageredirectrequested>false</successpageredirectrequested>
+    <taxamt>0.00</taxamt>
+    <timestamp>2016-01-08T10:35:36Z</timestamp>
+    <token>EC-46690288NG459311W</token>
+    <transactionid>3MS18119XY756351N</transactionid>
+    <transactiontype>expresscheckout</transactiontype>
+    <version>124.0</version>
+  </PayPalTxn>
+  <datacash_reference>3100900013649568</datacash_reference>
+  <merchantreference>DoExpress007</merchantreference>
+  <mode>LIVE</mode>
+  <status>1</status>
+</Response>

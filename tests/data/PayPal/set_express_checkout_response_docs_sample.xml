@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response version="2">
+  <time>1452249093</time>
+  <reason>ACCEPTED</reason>
+  <PayPalTxn>
+    <ack>Success</ack>
+    <build>18308778</build>
+    <correlationid>48b47eeeefbca</correlationid>
+    <timestamp>2016-01-08T10:31:34Z</timestamp>
+    <token>EC-46690288NG459311W</token>
+    <version>124.0</version>
+  </PayPalTxn>
+  <datacash_reference>3700900013649551</datacash_reference>
+  <merchantreference>SETrequest007</merchantreference>
+  <mode>LIVE</mode>
+  <status>1</status>
+</Response>

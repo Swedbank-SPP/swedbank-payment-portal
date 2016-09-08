@@ -1,0 +1,15 @@
+# User-specific stuff:
+.idea/*
+
+# Managed by Composer
+/vendor/
+
+# PHPUnit
+/app/phpunit.xml
+/phpunit.xml
+
+# Composer PHAR
+/composer.phar
+
+# Test output
+/tmp

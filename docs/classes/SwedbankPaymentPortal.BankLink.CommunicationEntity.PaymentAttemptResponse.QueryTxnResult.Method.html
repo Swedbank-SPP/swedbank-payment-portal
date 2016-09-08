@@ -1,0 +1,2373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/SwedbankPaymentPortal.html">\SwedbankPaymentPortal</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">347</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1754290428"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1754290428" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-717787448"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.html" style="margin-left: 30px; padding-left: 0">SwedbankPaymentPortal</a>
+            </div>
+            <div id="namespace-717787448" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1918826193"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.BankLink.html" style="margin-left: 30px; padding-left: 0">BankLink</a>
+            </div>
+            <div id="namespace-1918826193" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1644089734"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.BankLink.CommunicationEntity.html" style="margin-left: 30px; padding-left: 0">CommunicationEntity</a>
+            </div>
+            <div id="namespace-1644089734" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-430345925"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.BankLink.CommunicationEntity.HPSQueryRequest.html" style="margin-left: 30px; padding-left: 0">HPSQueryRequest</a>
+            </div>
+            <div id="namespace-430345925" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.HPSQueryRequest.HPSQueryRequest.html">HPSQueryRequest</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-551783319"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.BankLink.CommunicationEntity.HPSQueryResponse.html" style="margin-left: 30px; padding-left: 0">HPSQueryResponse</a>
+            </div>
+            <div id="namespace-551783319" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.HPSQueryResponse.AuthAttempt.html">AuthAttempt</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.HPSQueryResponse.HPSQueryResponse.html">HPSQueryResponse</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.HPSQueryResponse.HpsTxn.html">HpsTxn</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1939230329"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.BankLink.CommunicationEntity.NotificationQuery.html" style="margin-left: 30px; padding-left: 0">NotificationQuery</a>
+            </div>
+            <div id="namespace-1939230329" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.NotificationQuery.Event.html">Event</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.NotificationQuery.MerchantNotificationResponse.html">MerchantNotificationResponse</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.NotificationQuery.ServerNotification.html">ServerNotification</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-595097074"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptRequest.html" style="margin-left: 30px; padding-left: 0">PaymentAttemptRequest</a>
+            </div>
+            <div id="namespace-595097074" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptRequest.PaymentAttemptRequest.html">PaymentAttemptRequest</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1751007306"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptResponse.html" style="margin-left: 30px; padding-left: 0">PaymentAttemptResponse</a>
+            </div>
+            <div id="namespace-1751007306" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2112195058"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptResponse.QueryTxnResult.html" style="margin-left: 30px; padding-left: 0">QueryTxnResult</a>
+            </div>
+            <div id="namespace-2112195058" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptResponse.QueryTxnResult.Amount.html">Amount</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptResponse.QueryTxnResult.APMTxn.html">APMTxn</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptResponse.QueryTxnResult.Method.html">Method</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptResponse.QueryTxnResult.Purchase.html">Purchase</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptResponse.QueryTxnResult.RiskResult.html">RiskResult</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptResponse.PaymentAttemptResponse.html">PaymentAttemptResponse</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptResponse.QueryTxnResult.html">QueryTxnResult</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1024611984"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.BankLink.CommunicationEntity.PurchaseRequest.html" style="margin-left: 30px; padding-left: 0">PurchaseRequest</a>
+            </div>
+            <div id="namespace-1024611984" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-501325241"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.BankLink.CommunicationEntity.PurchaseRequest.Transaction.html" style="margin-left: 30px; padding-left: 0">Transaction</a>
+            </div>
+            <div id="namespace-501325241" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1433608060"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.BankLink.CommunicationEntity.PurchaseRequest.Transaction.APMTxn.html" style="margin-left: 30px; padding-left: 0">APMTxn</a>
+            </div>
+            <div id="namespace-1433608060" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-431457242"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.BankLink.CommunicationEntity.PurchaseRequest.Transaction.APMTxn.AlternativePayment.html" style="margin-left: 30px; padding-left: 0">AlternativePayment</a>
+            </div>
+            <div id="namespace-431457242" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-152149536"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.BankLink.CommunicationEntity.PurchaseRequest.Transaction.APMTxn.AlternativePayment.TransactionDetails.html" style="margin-left: 30px; padding-left: 0">TransactionDetails</a>
+            </div>
+            <div id="namespace-152149536" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1495284038"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.BankLink.CommunicationEntity.PurchaseRequest.Transaction.APMTxn.AlternativePayment.TransactionDetails.BillingDetails.html" style="margin-left: 30px; padding-left: 0">BillingDetails</a>
+            </div>
+            <div id="namespace-1495284038" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PurchaseRequest.Transaction.APMTxn.AlternativePayment.TransactionDetails.BillingDetails.AmountDetails.html">AmountDetails</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PurchaseRequest.Transaction.APMTxn.AlternativePayment.TransactionDetails.BillingDetails.html">BillingDetails</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PurchaseRequest.Transaction.APMTxn.AlternativePayment.TransactionDetails.PersonalDetails.html">PersonalDetails</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PurchaseRequest.Transaction.APMTxn.AlternativePayment.MethodDetails.html">MethodDetails</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PurchaseRequest.Transaction.APMTxn.AlternativePayment.TransactionDetails.html">TransactionDetails</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PurchaseRequest.Transaction.APMTxn.AlternativePayment.html">AlternativePayment</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PurchaseRequest.Transaction.APMTxn.html">APMTxn</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PurchaseRequest.Transaction.HPSTxn.html">HPSTxn</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PurchaseRequest.PurchaseRequest.html">PurchaseRequest</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PurchaseRequest.Transaction.html">Transaction</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2048554087"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.BankLink.CommunicationEntity.PurchaseResponse.html" style="margin-left: 30px; padding-left: 0">PurchaseResponse</a>
+            </div>
+            <div id="namespace-2048554087" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PurchaseResponse.HpsTxn.html">HpsTxn</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PurchaseResponse.PurchaseResponse.html">PurchaseResponse</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2068849269"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.BankLink.CommunicationEntity.TransactionQueryRequest.html" style="margin-left: 30px; padding-left: 0">TransactionQueryRequest</a>
+            </div>
+            <div id="namespace-2068849269" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2012729501"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.BankLink.CommunicationEntity.TransactionQueryRequest.APMTxn.html" style="margin-left: 30px; padding-left: 0">APMTxn</a>
+            </div>
+            <div id="namespace-2012729501" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.TransactionQueryRequest.APMTxn.AlternativePayment.html">AlternativePayment</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.TransactionQueryRequest.APMTxn.html">APMTxn</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.TransactionQueryRequest.Transaction.html">Transaction</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.TransactionQueryRequest.TransactionQueryRequest.html">TransactionQueryRequest</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1282143360"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.BankLink.CommunicationEntity.TransactionQueryResponse.html" style="margin-left: 30px; padding-left: 0">TransactionQueryResponse</a>
+            </div>
+            <div id="namespace-1282143360" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.TransactionQueryResponse.TransactionQueryResponse.html">TransactionQueryResponse</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1059723511"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.BankLink.CommunicationEntity.Type.html" style="margin-left: 30px; padding-left: 0">Type</a>
+            </div>
+            <div id="namespace-1059723511" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.Type.PaymentMethod.html">PaymentMethod</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.Type.ServiceType.html">ServiceType</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1540790716"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.BankLink.Listeners.html" style="margin-left: 30px; padding-left: 0">Listeners</a>
+            </div>
+            <div id="namespace-1540790716" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.Listeners.SerializationSubscriber.html">SerializationSubscriber</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.BankLinkService.html">BankLinkService</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.Communication.html">Communication</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.BankLink.PurchaseBuilder.html">PurchaseBuilder</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-939747031"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.CC.html" style="margin-left: 30px; padding-left: 0">CC</a>
+            </div>
+            <div id="namespace-939747031" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1333686000"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.CC.HCCCommunicationEntity.html" style="margin-left: 30px; padding-left: 0">HCCCommunicationEntity</a>
+            </div>
+            <div id="namespace-1333686000" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-339328808"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.CC.HCCCommunicationEntity.AuthorizationRequest.html" style="margin-left: 30px; padding-left: 0">AuthorizationRequest</a>
+            </div>
+            <div id="namespace-339328808" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-920344268"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.CC.HCCCommunicationEntity.AuthorizationRequest.Transaction.html" style="margin-left: 30px; padding-left: 0">Transaction</a>
+            </div>
+            <div id="namespace-920344268" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.AuthorizationRequest.Transaction.Action.html">Action</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.AuthorizationRequest.Transaction.BillingDetails.html">BillingDetails</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.AuthorizationRequest.Transaction.Browser.html">Browser</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.AuthorizationRequest.Transaction.CardDetails.html">CardDetails</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.AuthorizationRequest.Transaction.CardTxn.html">CardTxn</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.AuthorizationRequest.Transaction.CustomerDetails.html">CustomerDetails</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.AuthorizationRequest.Transaction.MerchantConfiguration.html">MerchantConfiguration</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.AuthorizationRequest.Transaction.OrderDetails.html">OrderDetails</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.AuthorizationRequest.Transaction.PaymentDetails.html">PaymentDetails</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.AuthorizationRequest.Transaction.PersonalDetails.html">PersonalDetails</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.AuthorizationRequest.Transaction.Risk.html">Risk</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.AuthorizationRequest.Transaction.RiskDetails.html">RiskDetails</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.AuthorizationRequest.Transaction.ShippingDetails.html">ShippingDetails</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.AuthorizationRequest.Transaction.ThreeDSecure.html">ThreeDSecure</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.AuthorizationRequest.Transaction.TxnDetails.html">TxnDetails</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.AuthorizationRequest.AuthorizationRequest.html">AuthorizationRequest</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.AuthorizationRequest.Transaction.html">Transaction</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1394814946"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.CC.HCCCommunicationEntity.AuthorizationResponse.html" style="margin-left: 30px; padding-left: 0">AuthorizationResponse</a>
+            </div>
+            <div id="namespace-1394814946" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.AuthorizationResponse.AuthorizationResponse.html">AuthorizationResponse</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.AuthorizationResponse.CardTxn.html">CardTxn</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.AuthorizationResponse.ThreeDSecure.html">ThreeDSecure</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-221939773"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.CC.HCCCommunicationEntity.HCCQueryRequest.html" style="margin-left: 30px; padding-left: 0">HCCQueryRequest</a>
+            </div>
+            <div id="namespace-221939773" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-736877666"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.CC.HCCCommunicationEntity.HCCQueryRequest.Transaction.html" style="margin-left: 30px; padding-left: 0">Transaction</a>
+            </div>
+            <div id="namespace-736877666" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.HCCQueryRequest.Transaction.HistoricTxn.html">HistoricTxn</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.HCCQueryRequest.HCCQueryRequest.html">HCCQueryRequest</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.HCCQueryRequest.Transaction.html">Transaction</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-273443557"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.CC.HCCCommunicationEntity.HCCQueryResponse.html" style="margin-left: 30px; padding-left: 0">HCCQueryResponse</a>
+            </div>
+            <div id="namespace-273443557" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-78960984"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.CC.HCCCommunicationEntity.HCCQueryResponse.Risk.html" style="margin-left: 30px; padding-left: 0">Risk</a>
+            </div>
+            <div id="namespace-78960984" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.HCCQueryResponse.Risk.ActionResponse.html">ActionResponse</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.HCCQueryResponse.Risk.BankResultResponse.html">BankResultResponse</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.HCCQueryResponse.Risk.ScreeningResponse.html">ScreeningResponse</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.HCCQueryResponse.Card.html">Card</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.HCCQueryResponse.Cv2Avs.html">Cv2Avs</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.HCCQueryResponse.HCCQueryResponse.html">HCCQueryResponse</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.HCCQueryResponse.HpsTxn.html">HpsTxn</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.HCCQueryResponse.MAC.html">MAC</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.HCCQueryResponse.QueryTxnResult.html">QueryTxnResult</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.HCCQueryResponse.Risk.html">Risk</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.HCCQueryResponse.ThreeDSecure.html">ThreeDSecure</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-806786942"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.CC.HCCCommunicationEntity.SetupRequest.html" style="margin-left: 30px; padding-left: 0">SetupRequest</a>
+            </div>
+            <div id="namespace-806786942" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-357769201"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.CC.HCCCommunicationEntity.SetupRequest.Transaction.html" style="margin-left: 30px; padding-left: 0">Transaction</a>
+            </div>
+            <div id="namespace-357769201" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.SetupRequest.Transaction.DynamicData.html">DynamicData</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.SetupRequest.Transaction.HPSTxn.html">HPSTxn</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.SetupRequest.Transaction.TxnDetails.html">TxnDetails</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.SetupRequest.SetupRequest.html">SetupRequest</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.SetupRequest.Transaction.html">Transaction</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1771502799"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.CC.HCCCommunicationEntity.SetupResponse.html" style="margin-left: 30px; padding-left: 0">SetupResponse</a>
+            </div>
+            <div id="namespace-1771502799" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.SetupResponse.HpsTxn.html">HpsTxn</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.SetupResponse.SetupResponse.html">SetupResponse</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-48715708"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.CC.HCCCommunicationEntity.ThreeDSecureAuthorizationRequest.html" style="margin-left: 30px; padding-left: 0">ThreeDSecureAuthorizationRequest</a>
+            </div>
+            <div id="namespace-48715708" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.ThreeDSecureAuthorizationRequest.HistoricTxn.html">HistoricTxn</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.ThreeDSecureAuthorizationRequest.ThreeDSecureAuthorizationRequest.html">ThreeDSecureAuthorizationRequest</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.ThreeDSecureAuthorizationRequest.Transaction.html">Transaction</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-803373618"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.CC.HCCCommunicationEntity.ThreeDSecureAuthorizationResponse.html" style="margin-left: 30px; padding-left: 0">ThreeDSecureAuthorizationResponse</a>
+            </div>
+            <div id="namespace-803373618" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-172324089"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.CC.HCCCommunicationEntity.ThreeDSecureAuthorizationResponse.Risk.html" style="margin-left: 30px; padding-left: 0">Risk</a>
+            </div>
+            <div id="namespace-172324089" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.ThreeDSecureAuthorizationResponse.Risk.ActionResponse.html">ActionResponse</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.ThreeDSecureAuthorizationResponse.Risk.BankResultResponse.html">BankResultResponse</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.ThreeDSecureAuthorizationResponse.Risk.ScreeningResponse.html">ScreeningResponse</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.ThreeDSecureAuthorizationResponse.CardTxn.html">CardTxn</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.ThreeDSecureAuthorizationResponse.Cv2Avs.html">Cv2Avs</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.ThreeDSecureAuthorizationResponse.MAC.html">MAC</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.ThreeDSecureAuthorizationResponse.Risk.html">Risk</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.ThreeDSecureAuthorizationResponse.ThreeDSecure.html">ThreeDSecure</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCCommunicationEntity.ThreeDSecureAuthorizationResponse.ThreeDSecureAuthorizationResponse.html">ThreeDSecureAuthorizationResponse</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-711791073"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.CC.HCCService.html" style="margin-left: 30px; padding-left: 0">HCCService</a>
+            </div>
+            <div id="namespace-711791073" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCService.Communication.html">Communication</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HCCService.HCCService.html">HCCService</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-535060393"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.CC.HPSCommunicationEntity.html" style="margin-left: 30px; padding-left: 0">HPSCommunicationEntity</a>
+            </div>
+            <div id="namespace-535060393" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-422484749"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.CC.HPSCommunicationEntity.HPSQueryRequest.html" style="margin-left: 30px; padding-left: 0">HPSQueryRequest</a>
+            </div>
+            <div id="namespace-422484749" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HPSCommunicationEntity.HPSQueryRequest.HPSQueryRequest.html">HPSQueryRequest</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1252780144"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.CC.HPSCommunicationEntity.HPSQueryResponse.html" style="margin-left: 30px; padding-left: 0">HPSQueryResponse</a>
+            </div>
+            <div id="namespace-1252780144" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-776314348"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.CC.HPSCommunicationEntity.HPSQueryResponse.RiskResponse.html" style="margin-left: 30px; padding-left: 0">RiskResponse</a>
+            </div>
+            <div id="namespace-776314348" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HPSCommunicationEntity.HPSQueryResponse.RiskResponse.RiskResponse.html">RiskResponse</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HPSCommunicationEntity.HPSQueryResponse.RiskResponse.ScreeningResponse.html">ScreeningResponse</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HPSCommunicationEntity.HPSQueryResponse.AuthAttempt.html">AuthAttempt</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HPSCommunicationEntity.HPSQueryResponse.HPSQueryResponse.html">HPSQueryResponse</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HPSCommunicationEntity.HPSQueryResponse.HpsTxn.html">HpsTxn</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HPSCommunicationEntity.HPSQueryResponse.ResponseStatus.html">ResponseStatus</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1841228697"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.CC.HPSCommunicationEntity.SetupRequest.html" style="margin-left: 30px; padding-left: 0">SetupRequest</a>
+            </div>
+            <div id="namespace-1841228697" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-694684500"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.CC.HPSCommunicationEntity.SetupRequest.Transaction.html" style="margin-left: 30px; padding-left: 0">Transaction</a>
+            </div>
+            <div id="namespace-694684500" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HPSCommunicationEntity.SetupRequest.Transaction.Action.html">Action</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HPSCommunicationEntity.SetupRequest.Transaction.BillingDetails.html">BillingDetails</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HPSCommunicationEntity.SetupRequest.Transaction.CardTxn.html">CardTxn</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HPSCommunicationEntity.SetupRequest.Transaction.CustomerDetails.html">CustomerDetails</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HPSCommunicationEntity.SetupRequest.Transaction.DynamicData.html">DynamicData</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HPSCommunicationEntity.SetupRequest.Transaction.HPSTxn.html">HPSTxn</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HPSCommunicationEntity.SetupRequest.Transaction.MerchantConfiguration.html">MerchantConfiguration</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HPSCommunicationEntity.SetupRequest.Transaction.OrderDetails.html">OrderDetails</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HPSCommunicationEntity.SetupRequest.Transaction.PaymentDetails.html">PaymentDetails</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HPSCommunicationEntity.SetupRequest.Transaction.PersonalDetails.html">PersonalDetails</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HPSCommunicationEntity.SetupRequest.Transaction.Risk.html">Risk</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HPSCommunicationEntity.SetupRequest.Transaction.RiskDetails.html">RiskDetails</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HPSCommunicationEntity.SetupRequest.Transaction.ShippingDetails.html">ShippingDetails</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HPSCommunicationEntity.SetupRequest.Transaction.ThreeDSecure.html">ThreeDSecure</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HPSCommunicationEntity.SetupRequest.Transaction.TxnDetails.html">TxnDetails</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HPSCommunicationEntity.SetupRequest.SetupRequest.html">SetupRequest</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HPSCommunicationEntity.SetupRequest.Transaction.html">Transaction</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-415469629"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.CC.HPSCommunicationEntity.SetupResponse.html" style="margin-left: 30px; padding-left: 0">SetupResponse</a>
+            </div>
+            <div id="namespace-415469629" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HPSCommunicationEntity.SetupResponse.HpsTxn.html">HpsTxn</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HPSCommunicationEntity.SetupResponse.SetupResponse.html">SetupResponse</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1766714696"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.CC.HPSService.html" style="margin-left: 30px; padding-left: 0">HPSService</a>
+            </div>
+            <div id="namespace-1766714696" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HPSService.Communication.html">Communication</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.HPSService.HPSService.html">HPSService</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1420023247"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.CC.Type.html" style="margin-left: 30px; padding-left: 0">Type</a>
+            </div>
+            <div id="namespace-1420023247" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.Type.AuthorizationStatus.html">AuthorizationStatus</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.Type.CardholderRegisterStatus.html">CardholderRegisterStatus</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.Type.ScreeningAction.html">ScreeningAction</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.Type.ThreeDAuthorizationStatus.html">ThreeDAuthorizationStatus</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.Type.TransactionChannel.html">TransactionChannel</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.CC.PaymentCardTransactionData.html">PaymentCardTransactionData</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-52284501"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.Compiler.html" style="margin-left: 30px; padding-left: 0">Compiler</a>
+            </div>
+            <div id="namespace-52284501" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.Compiler.SerializerCompilerPass.html">SerializerCompilerPass</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1812896992"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.Logger.html" style="margin-left: 30px; padding-left: 0">Logger</a>
+            </div>
+            <div id="namespace-1812896992" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/SwedbankPaymentPortal.Logger.LoggerInterface.html">LoggerInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.Logger.NullLogger.html">NullLogger</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-93301670"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.Options.html" style="margin-left: 30px; padding-left: 0">Options</a>
+            </div>
+            <div id="namespace-93301670" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.Options.CommunicationOptions.html">CommunicationOptions</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.Options.ServiceOptions.html">ServiceOptions</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-468198024"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.PayPal.html" style="margin-left: 30px; padding-left: 0">PayPal</a>
+            </div>
+            <div id="namespace-468198024" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-816067210"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.PayPal.CommunicationEntity.html" style="margin-left: 30px; padding-left: 0">CommunicationEntity</a>
+            </div>
+            <div id="namespace-816067210" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-106116108"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.PayPal.CommunicationEntity.DoExpressCheckoutPaymentRequest.html" style="margin-left: 30px; padding-left: 0">DoExpressCheckoutPaymentRequest</a>
+            </div>
+            <div id="namespace-106116108" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-773306882"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.PayPal.CommunicationEntity.DoExpressCheckoutPaymentRequest.Transaction.html" style="margin-left: 30px; padding-left: 0">Transaction</a>
+            </div>
+            <div id="namespace-773306882" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.PayPal.CommunicationEntity.DoExpressCheckoutPaymentRequest.Transaction.PayPalTxn.html">PayPalTxn</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.PayPal.CommunicationEntity.DoExpressCheckoutPaymentRequest.Transaction.TxnDetails.html">TxnDetails</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.PayPal.CommunicationEntity.DoExpressCheckoutPaymentRequest.DoExpressCheckoutPaymentRequest.html">DoExpressCheckoutPaymentRequest</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.PayPal.CommunicationEntity.DoExpressCheckoutPaymentRequest.Transaction.html">Transaction</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-736231497"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.PayPal.CommunicationEntity.DoExpressCheckoutPaymentResponse.html" style="margin-left: 30px; padding-left: 0">DoExpressCheckoutPaymentResponse</a>
+            </div>
+            <div id="namespace-736231497" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.PayPal.CommunicationEntity.DoExpressCheckoutPaymentResponse.DoExpressCheckoutPaymentResponse.html">DoExpressCheckoutPaymentResponse</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.PayPal.CommunicationEntity.DoExpressCheckoutPaymentResponse.PayPalTxn.html">PayPalTxn</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-757541052"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.PayPal.CommunicationEntity.GetExpressCheckoutDetailsRequest.html" style="margin-left: 30px; padding-left: 0">GetExpressCheckoutDetailsRequest</a>
+            </div>
+            <div id="namespace-757541052" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-594699318"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.PayPal.CommunicationEntity.GetExpressCheckoutDetailsRequest.Transaction.html" style="margin-left: 30px; padding-left: 0">Transaction</a>
+            </div>
+            <div id="namespace-594699318" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.PayPal.CommunicationEntity.GetExpressCheckoutDetailsRequest.Transaction.PayPalTxn.html">PayPalTxn</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.PayPal.CommunicationEntity.GetExpressCheckoutDetailsRequest.Transaction.TxnDetails.html">TxnDetails</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.PayPal.CommunicationEntity.GetExpressCheckoutDetailsRequest.GetExpressCheckoutDetailsRequest.html">GetExpressCheckoutDetailsRequest</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.PayPal.CommunicationEntity.GetExpressCheckoutDetailsRequest.Transaction.html">Transaction</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1994770182"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.PayPal.CommunicationEntity.GetExpressCheckoutDetailsResponse.html" style="margin-left: 30px; padding-left: 0">GetExpressCheckoutDetailsResponse</a>
+            </div>
+            <div id="namespace-1994770182" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.PayPal.CommunicationEntity.GetExpressCheckoutDetailsResponse.BillingAddress.html">BillingAddress</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.PayPal.CommunicationEntity.GetExpressCheckoutDetailsResponse.GetExpressCheckoutDetailsResponse.html">GetExpressCheckoutDetailsResponse</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.PayPal.CommunicationEntity.GetExpressCheckoutDetailsResponse.PayPalTxn.html">PayPalTxn</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1814230334"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.PayPal.CommunicationEntity.SetExpressCheckoutRequest.html" style="margin-left: 30px; padding-left: 0">SetExpressCheckoutRequest</a>
+            </div>
+            <div id="namespace-1814230334" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-445932022"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.PayPal.CommunicationEntity.SetExpressCheckoutRequest.Transaction.html" style="margin-left: 30px; padding-left: 0">Transaction</a>
+            </div>
+            <div id="namespace-445932022" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.PayPal.CommunicationEntity.SetExpressCheckoutRequest.Transaction.PayPalTxn.html">PayPalTxn</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.PayPal.CommunicationEntity.SetExpressCheckoutRequest.Transaction.TxnDetails.html">TxnDetails</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.PayPal.CommunicationEntity.SetExpressCheckoutRequest.SetExpressCheckoutRequest.html">SetExpressCheckoutRequest</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.PayPal.CommunicationEntity.SetExpressCheckoutRequest.Transaction.html">Transaction</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-14457192"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.PayPal.CommunicationEntity.SetExpressCheckoutResponse.html" style="margin-left: 30px; padding-left: 0">SetExpressCheckoutResponse</a>
+            </div>
+            <div id="namespace-14457192" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.PayPal.CommunicationEntity.SetExpressCheckoutResponse.PayPalTxn.html">PayPalTxn</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.PayPal.CommunicationEntity.SetExpressCheckoutResponse.SetExpressCheckoutResponse.html">SetExpressCheckoutResponse</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.PayPal.CommunicationEntity.ShippingAddress.html">ShippingAddress</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1915524198"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.PayPal.Type.html" style="margin-left: 30px; padding-left: 0">Type</a>
+            </div>
+            <div id="namespace-1915524198" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.PayPal.Type.AcknowledgmentStatus.html">AcknowledgmentStatus</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.PayPal.Type.AddressStatus.html">AddressStatus</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.PayPal.Type.PayerStatus.html">PayerStatus</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.PayPal.Type.PaymentStatus.html">PaymentStatus</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.PayPal.Type.PayPalBool.html">PayPalBool</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.PayPal.Communication.html">Communication</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.PayPal.PayPalService.html">PayPalService</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1282084047"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.SharedEntity.html" style="margin-left: 30px; padding-left: 0">SharedEntity</a>
+            </div>
+            <div id="namespace-1282084047" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1395145659"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.SharedEntity.HPSQueryRequest.html" style="margin-left: 30px; padding-left: 0">HPSQueryRequest</a>
+            </div>
+            <div id="namespace-1395145659" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1879570022"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.SharedEntity.HPSQueryRequest.Transaction.html" style="margin-left: 30px; padding-left: 0">Transaction</a>
+            </div>
+            <div id="namespace-1879570022" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.SharedEntity.HPSQueryRequest.Transaction.HistoricTxn.html">HistoricTxn</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.SharedEntity.HPSQueryRequest.HPSQueryRequest.html">HPSQueryRequest</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.SharedEntity.HPSQueryRequest.Transaction.html">Transaction</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-696850211"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.SharedEntity.Transaction.html" style="margin-left: 30px; padding-left: 0">Transaction</a>
+            </div>
+            <div id="namespace-696850211" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.SharedEntity.Transaction.TxnDetails.html">TxnDetails</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-618970792"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.SharedEntity.Type.html" style="margin-left: 30px; padding-left: 0">Type</a>
+            </div>
+            <div id="namespace-618970792" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.SharedEntity.Type.AbstractEnumerableType.html">AbstractEnumerableType</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.SharedEntity.Type.AbstractStatus.html">AbstractStatus</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.SharedEntity.Type.HostedPageSetId.html">HostedPageSetId</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.SharedEntity.Type.MerchantMode.html">MerchantMode</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.SharedEntity.Type.PurchaseStatus.html">PurchaseStatus</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.SharedEntity.Type.ResponseStatus.html">ResponseStatus</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.SharedEntity.Type.TransactionResult.html">TransactionResult</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.SharedEntity.Type.TransportType.html">TransportType</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.SharedEntity.AbstractResponse.html">AbstractResponse</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.SharedEntity.Amount.html">Amount</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.SharedEntity.Authentication.html">Authentication</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1136750783"></a>
+                                <a href="../namespaces/SwedbankPaymentPortal.Transaction.html" style="margin-left: 30px; padding-left: 0">Transaction</a>
+            </div>
+            <div id="namespace-1136750783" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/SwedbankPaymentPortal.Transaction.TransactionRepositoryFactoryInterface.html">TransactionRepositoryFactoryInterface</a></li>
+                                                    <li class="interface"><a href="../classes/SwedbankPaymentPortal.Transaction.TransactionRepositoryInterface.html">TransactionRepositoryInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.Transaction.TransactionContainer.html">TransactionContainer</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.Transaction.TransactionFrame.html">TransactionFrame</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.Transaction.TransactionRepository.html">TransactionRepository</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.Transaction.TransactionRepositoryFactory.html">TransactionRepositoryFactory</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/SwedbankPaymentPortal.CallbackInterface.html">CallbackInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.AbstractCommunication.html">AbstractCommunication</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.AbstractService.html">AbstractService</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.Container.html">Container</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.Network.html">Network</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.SensitiveDataCleanup.html">SensitiveDataCleanup</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.Serializer.html">Serializer</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.SwedbankPaymentPortal.html">SwedbankPaymentPortal</a></li>
+                                                    <li class="class"><a href="../classes/SwedbankPaymentPortal.Time.html">Time</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptResponse.QueryTxnResult.html">\SwedbankPaymentPortal\BankLink\CommunicationEntity\PaymentAttemptResponse\QueryTxnResult</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\SwedbankPaymentPortal\BankLink\CommunicationEntity\PaymentAttemptResponse\QueryTxnResult</small>Method</h1>
+                    <p><em>The top-level container element that depicts the APM used for the transaction.</em></p>
+                    <p>The sub elements will contain the rest of the APM specific details.</p>
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptResponse.QueryTxnResult.Method.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptResponse.QueryTxnResult.Method.html#method_getName" class="">getName()</a><br />
+                                                                    <a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptResponse.QueryTxnResult.Method.html#method_setName" class="">setName()</a><br />
+                                                                    <a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptResponse.QueryTxnResult.Method.html#method_getReferenceId" class="">getReferenceId()</a><br />
+                                                                    <a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptResponse.QueryTxnResult.Method.html#method_setReferenceId" class="">setReferenceId()</a><br />
+                                                                    <a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptResponse.QueryTxnResult.Method.html#method_getResponseCode" class="">getResponseCode()</a><br />
+                                                                    <a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptResponse.QueryTxnResult.Method.html#method_setResponseCode" class="">setResponseCode()</a><br />
+                                                                    <a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptResponse.QueryTxnResult.Method.html#method_getResponseDescription" class="">getResponseDescription()</a><br />
+                                                                    <a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptResponse.QueryTxnResult.Method.html#method_setResponseDescription" class="">setResponseDescription()</a><br />
+                                                                    <a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptResponse.QueryTxnResult.Method.html#method_getServiceType" class="">getServiceType()</a><br />
+                                                                    <a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptResponse.QueryTxnResult.Method.html#method_setServiceType" class="">setServiceType()</a><br />
+                                                                    <a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptResponse.QueryTxnResult.Method.html#method_getMethodSpecificData" class="">getMethodSpecificData()</a><br />
+                                                                    <a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptResponse.QueryTxnResult.Method.html#method_setMethodSpecificData" class="">setMethodSpecificData()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptResponse.QueryTxnResult.Method.html#property_name" class="">$name</a><br />
+                                                                    <a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptResponse.QueryTxnResult.Method.html#property_referenceId" class="">$referenceId</a><br />
+                                                                    <a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptResponse.QueryTxnResult.Method.html#property_responseCode" class="">$responseCode</a><br />
+                                                                    <a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptResponse.QueryTxnResult.Method.html#property_responseDescription" class="">$responseDescription</a><br />
+                                                                    <a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptResponse.QueryTxnResult.Method.html#property_serviceType" class="">$serviceType</a><br />
+                                                                    <a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.PaymentAttemptResponse.QueryTxnResult.Method.html#property_methodSpecificData" class="">$methodSpecificData</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/BankLink.CommunicationEntity.PaymentAttemptResponse.QueryTxnResult.Method.html"><div class="path-wrapper">BankLink\CommunicationEntity\PaymentAttemptResponse\QueryTxnResult\Method.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\SwedbankPaymentPortal\BankLink\CommunicationEntity\PaymentAttemptResponse\QueryTxnResult\Method</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                Annotation\AccessType
+                            </th>
+                            <td>
+                                                                    <p>(&quot;public_method&quot;)</p>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_name" name="property_name" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$name</h3>
+                <pre class="signature">$name : \SwedbankPaymentPortal\BankLink\CommunicationEntity\Type\PaymentMethod</pre>
+                <p><em>The APM for this transaction.</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.Type.PaymentMethod.html">\SwedbankPaymentPortal\BankLink\CommunicationEntity\Type\PaymentMethod</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            Annotation\XmlAttribute
+                        </th>
+                        <td>
+                                                            
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            Annotation\Type
+                        </th>
+                        <td>
+                                                            <p>(&quot;SwedbankPaymentPortal\BankLink\CommunicationEntity\Type\PaymentMethod&quot;)</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            Annotation\SerializedName
+                        </th>
+                        <td>
+                                                            <p>(&quot;name&quot;)</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_referenceId" name="property_referenceId" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$referenceId</h3>
+                <pre class="signature">$referenceId : string</pre>
+                <p><em>The value returned by the processor to uniquely identify the transaction</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            Annotation\Type
+                        </th>
+                        <td>
+                                                            <p>(&quot;string&quot;)</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            Annotation\SerializedName
+                        </th>
+                        <td>
+                                                            <p>(&quot;ReferenceId&quot;)</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            Annotation\XmlElement
+                        </th>
+                        <td>
+                                                            <p>(cdata=false)</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_responseCode" name="property_responseCode" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$responseCode</h3>
+                <pre class="signature">$responseCode : string</pre>
+                <p><em>A return code from the processor.</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            Annotation\Type
+                        </th>
+                        <td>
+                                                            <p>(&quot;string&quot;)</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            Annotation\SerializedName
+                        </th>
+                        <td>
+                                                            <p>(&quot;ResponseCode&quot;)</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            Annotation\XmlElement
+                        </th>
+                        <td>
+                                                            <p>(cdata=false)</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_responseDescription" name="property_responseDescription" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$responseDescription</h3>
+                <pre class="signature">$responseDescription : string</pre>
+                <p><em>The text field used to provide a short text description of the response code from the processor.</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            Annotation\Type
+                        </th>
+                        <td>
+                                                            <p>(&quot;string&quot;)</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            Annotation\SerializedName
+                        </th>
+                        <td>
+                                                            <p>(&quot;ResponseDescription&quot;)</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            Annotation\XmlElement
+                        </th>
+                        <td>
+                                                            <p>(cdata=false)</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_serviceType" name="property_serviceType" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$serviceType</h3>
+                <pre class="signature">$serviceType : \SwedbankPaymentPortal\BankLink\CommunicationEntity\Type\ServiceType</pre>
+                <p><em>The text field used to provide a short text description of the response code from the processor.</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.Type.ServiceType.html">\SwedbankPaymentPortal\BankLink\CommunicationEntity\Type\ServiceType</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            Annotation\Type
+                        </th>
+                        <td>
+                                                            <p>(&quot;SwedbankPaymentPortal\BankLink\CommunicationEntity\Type\ServiceType&quot;)</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            Annotation\SerializedName
+                        </th>
+                        <td>
+                                                            <p>(&quot;ServiceType&quot;)</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_methodSpecificData" name="property_methodSpecificData" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$methodSpecificData</h3>
+                <pre class="signature">$methodSpecificData : array&lt;mixed,string&gt;</pre>
+                <p><em>These are APM specific parameters that are returned in this container. Parameters can vary depending on APM.</em></p>
+                
+
+                                <h4>Type</h4>
+                array&lt;mixed,string&gt;
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            Annotation\SerializedName
+                        </th>
+                        <td>
+                                                            <p>(&quot;__MethodSpecificData&quot;)</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            Annotation\Type
+                        </th>
+                        <td>
+                                                            <p>(&quot;array&quot;)</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(\SwedbankPaymentPortal\BankLink\CommunicationEntity\Type\PaymentMethod  <span class="argument">$name</span>, string  <span class="argument">$referenceId</span>, string  <span class="argument">$responseCode</span>, string  <span class="argument">$responseDescription</span>, \SwedbankPaymentPortal\BankLink\CommunicationEntity\Type\ServiceType  <span class="argument">$serviceType = null</span>, array  <span class="argument">$methodSpecificData = array()</span>) </pre>
+                <p><em>Method constructor.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.Type.PaymentMethod.html">\SwedbankPaymentPortal\BankLink\CommunicationEntity\Type\PaymentMethod</a></td>
+                                <td>$name </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$referenceId </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$responseCode </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$responseDescription </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.Type.ServiceType.html">\SwedbankPaymentPortal\BankLink\CommunicationEntity\Type\ServiceType</a></td>
+                                <td>$serviceType </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$methodSpecificData </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getName" name="method_getName" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getName() : \SwedbankPaymentPortal\BankLink\CommunicationEntity\Type\PaymentMethod</pre>
+                <p><em>Name getter.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.Type.PaymentMethod.html">\SwedbankPaymentPortal\BankLink\CommunicationEntity\Type\PaymentMethod</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setName" name="method_setName" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setName(\SwedbankPaymentPortal\BankLink\CommunicationEntity\Type\PaymentMethod  <span class="argument">$name</span>) </pre>
+                <p><em>Name setter.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.Type.PaymentMethod.html">\SwedbankPaymentPortal\BankLink\CommunicationEntity\Type\PaymentMethod</a></td>
+                                <td>$name </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getReferenceId" name="method_getReferenceId" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getReferenceId()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getReferenceId() : string</pre>
+                <p><em>ReferenceId getter.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setReferenceId" name="method_setReferenceId" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setReferenceId()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setReferenceId(string  <span class="argument">$referenceId</span>) </pre>
+                <p><em>ReferenceId setter.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$referenceId </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getResponseCode" name="method_getResponseCode" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getResponseCode()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getResponseCode() : string</pre>
+                <p><em>ResponseCode getter.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setResponseCode" name="method_setResponseCode" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setResponseCode()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setResponseCode(string  <span class="argument">$responseCode</span>) </pre>
+                <p><em>ResponseCode setter.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$responseCode </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getResponseDescription" name="method_getResponseDescription" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getResponseDescription()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getResponseDescription() : string</pre>
+                <p><em>ResponseDescription getter.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setResponseDescription" name="method_setResponseDescription" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setResponseDescription()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setResponseDescription(string  <span class="argument">$responseDescription</span>) </pre>
+                <p><em>ResponseDescription setter.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$responseDescription </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getServiceType" name="method_getServiceType" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getServiceType()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getServiceType() : \SwedbankPaymentPortal\BankLink\CommunicationEntity\Type\ServiceType</pre>
+                <p><em>ServiceType getter.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.Type.ServiceType.html">\SwedbankPaymentPortal\BankLink\CommunicationEntity\Type\ServiceType</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setServiceType" name="method_setServiceType" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setServiceType()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setServiceType(\SwedbankPaymentPortal\BankLink\CommunicationEntity\Type\ServiceType  <span class="argument">$serviceType</span>) </pre>
+                <p><em>ServiceType setter.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/SwedbankPaymentPortal.BankLink.CommunicationEntity.Type.ServiceType.html">\SwedbankPaymentPortal\BankLink\CommunicationEntity\Type\ServiceType</a></td>
+                                <td>$serviceType </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getMethodSpecificData" name="method_getMethodSpecificData" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getMethodSpecificData()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getMethodSpecificData() : array&lt;mixed,\string&gt;</pre>
+                <p><em>MethodSpecificData getter.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array&lt;mixed,\string&gt;
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setMethodSpecificData" name="method_setMethodSpecificData" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setMethodSpecificData()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setMethodSpecificData(array&lt;mixed,\string&gt;  <span class="argument">$methodSpecificData</span>) </pre>
+                <p><em>MethodSpecificData setter.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array&lt;mixed,\string&gt;</td>
+                                <td>$methodSpecificData </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Method.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/BankLink\CommunicationEntity\PaymentAttemptResponse\QueryTxnResult\Method.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/SwedbankPaymentPortal.html">\SwedbankPaymentPortal</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on September 7th, 2016 at 13:17.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

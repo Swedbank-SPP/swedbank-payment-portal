@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+  <time>1437055617</time>
+  <reason>ACCEPTED</reason>
+  <QueryTxnResult>
+    <APMTxn AccountName="10001">
+      <Purchase DPGReferenceId="244580" TransactionId="ordernumber/01">
+        <Amount CurrencyCode="978" Exponent="2">1</Amount>
+        <PaymentMethod name="SW">
+          <ReferenceId>392</ReferenceId>
+          <ResponseCode>1101</ResponseCode>
+          <ResponseDescription>APPROVED</ResponseDescription>
+          <ServiceType>LIT_BANK</ServiceType>
+          <VK_LANG>ENG</VK_LANG>
+          <VK_MSG>Test LIT</VK_MSG>
+          <VK_REC_ACC>LT10000000000000001</VK_REC_ACC>
+          <VK_REC_NAME>SWEDBANK, AB</VK_REC_NAME>
+          <VK_SND_ACC>LT20000000000000002</VK_SND_ACC>
+          <VK_SND_ID>HP</VK_SND_ID>
+          <VK_SND_NAME>John Doe</VK_SND_NAME>
+          <VK_T_DATE>27.04.2015</VK_T_DATE>
+        </PaymentMethod>
+        <RecommendedClientMessage><![CDATA[Your transaction has been processed successfully.]]></RecommendedClientMessage>
+        <RiskResult>
+          <StatusCode>100</StatusCode>
+          <StatusDescription><![CDATA[No Risk]]></StatusDescription>
+        </RiskResult>
+        <Status>AUTHORISED</Status>
+      </Purchase>
+    </APMTxn>
+    <datacash_reference>3700900010241729</datacash_reference>
+    <merchant_reference>ordernumber/01</merchant_reference>
+    <reason>ACCEPTED</reason>
+    <status>1</status>
+    <transaction_date>2015-04-27 12:51:15</transaction_date>
+  </QueryTxnResult>
+  <mode>LIVE</mode>
+  <status>1</status>
+</Response>

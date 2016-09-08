@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Request version="2">
+  <Authentication>
+    <password>***</password>
+    <client>*******</client>
+  </Authentication>
+  <Transaction>
+    <PayPalTxn>
+      <reference>3700900013649551</reference>
+      <method>get_express_checkout_details</method>
+    </PayPalTxn>
+    <TxnDetails>
+      <merchantreference>Get request 007</merchantreference>
+    </TxnDetails>
+  </Transaction>
+</Request>

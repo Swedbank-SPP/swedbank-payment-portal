@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Request version="2">
+  <Authentication>
+    <password>***</password>
+    <client>*******</client>
+  </Authentication>
+  <Transaction>
+    <PayPalTxn>
+      <ShippingAddress>
+        <city>San Jose</city>
+        <country_code>US</country_code>
+        <name>Test User</name>
+        <postcode>95131</postcode>
+        <region>CA</region>
+        <street_address1>1 Main St</street_address1>
+        <street_address2>Hose</street_address2>
+      </ShippingAddress>
+      <method>do_express_checkout_payment</method>
+      <reference>3700900013649551</reference>
+    </PayPalTxn>
+    <TxnDetails>
+      <amount currency="EUR">10.00</amount>
+      <merchantreference>Do Express 007</merchantreference>
+    </TxnDetails>
+  </Transaction>
+</Request>

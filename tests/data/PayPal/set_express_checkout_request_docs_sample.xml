@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Request version="2">
+  <Authentication>
+    <password>gDarz27q</password>
+    <client>88120987</client>
+  </Authentication>
+  <Transaction>
+    <PayPalTxn>
+      <ShippingAddress>
+        <city>San Jose</city>
+        <country_code>US</country_code>
+        <name>Test User</name>
+        <postcode>95131</postcode>
+        <region>CA</region>
+        <street_address1>1 Main St</street_address1>
+      </ShippingAddress>
+      <custom>ABCQWH</custom>
+      <description>PayPal test payment</description>
+      <email>customer@customer.com</email>
+      <invnum>InvoiceNr:1464179342</invnum>
+      <localecode>US</localecode>
+      <max_amount>10.00</max_amount>
+      <method>set_express_checkout</method>
+      <no_shipping>0</no_shipping>
+      <override_address>0</override_address>
+      <req_confirmed_shipping>0</req_confirmed_shipping>
+      <return_url>https://www.sppshop.eu/spptest/card_auth_result_pp.php</return_url>
+      <cancel_url>https://www.sppshop.eu/spptest/card_auth_result_pp.php</cancel_url>
+    </PayPalTxn>
+    <TxnDetails>
+      <amount currency="EUR">0.10</amount>
+      <merchantreference>SPPtestPayPal_1464179342</merchantreference>
+    </TxnDetails>
+  </Transaction>
+</Request>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+  <APMTxn AccountName="BL_W3O4IUZ">
+    <Purchase DPGReferenceId="1935419" TransactionId="A9_88888">
+      <PaymentMethod name="SW">
+        <ReferenceId/>
+      </PaymentMethod>
+      <Status>CANCELLED</Status>
+      <Amount CurrencyCode="978" Exponent="2">500</Amount>
+      <RiskResult>
+        <StatusCode>100</StatusCode>
+        <StatusDescription><![CDATA[No Risk]]></StatusDescription>
+      </RiskResult>
+      <RecommendedClientMessage/>
+      <MerchantCustomDetails>
+      </MerchantCustomDetails>
+    </Purchase>
+  </APMTxn>
+  <datacash_reference>3000900010000498</datacash_reference>
+  <merchant_reference>A9_88888</merchant_reference>
+  <mode>LIVE</mode>
+  <reason>Transaction was cancelled</reason>
+  <status>2054</status>
+  <time>2015-11-21 11:36:20</time>
+</Response>

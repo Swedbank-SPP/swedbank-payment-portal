@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response version="2">
+  <reason>ACCEPTED</reason>
+  <HpsTxn>
+    <hps_url>https://accreditation.datacash.com/hps-acq_a/</hps_url>
+    <session_id>4d02d85a-dd6a-47b3-8da8-a40047c482ec</session_id>
+  </HpsTxn>
+  <datacash_reference>3300900010288021</datacash_reference>
+  <merchantreference>ordernumber/01</merchantreference>
+  <mode>LIVE</mode>
+  <status>1</status>
+</Response>

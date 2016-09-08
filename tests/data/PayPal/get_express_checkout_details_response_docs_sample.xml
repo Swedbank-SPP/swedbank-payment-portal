@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response version="2">
+  <time>1452249263</time>
+  <reason>ACCEPTED</reason>
+  <PayPalTxn>
+    <BillingAddress>
+      <address_status>Confirmed</address_status>
+    </BillingAddress>
+    <ShippingAddress>
+      <city>San Jose</city>
+      <country_code>US</country_code>
+      <name>Test User</name>
+      <postcode>95131</postcode>
+      <region>CA</region>
+      <street_address1>1 Main St</street_address1>
+    </ShippingAddress>
+    <ack>Success</ack>
+    <addressnormalizationstatus>None</addressnormalizationstatus>
+    <addressstatus>Confirmed</addressstatus>
+    <amt>10</amt>
+    <billing_agreement_accepted>0</billing_agreement_accepted>
+    <build>18308778</build>
+    <checkoutstatus>PaymentActionNotInitiated</checkoutstatus>
+    <correlationid>92fef4b58bec2</correlationid>
+    <countrycode>GB</countrycode>
+    <currencycode>GBP</currencycode>
+    <custom>UPS_ID432555</custom>
+    <desc>CD</desc>
+    <email>sir_gibbs@hotmail.com</email>
+    <errorcode>0</errorcode>
+    <firstname>Shaun</firstname>
+    <handlingamt>0</handlingamt>
+    <insuranceamt>0</insuranceamt>
+    <insuranceoptionoffered>false</insuranceoptionoffered>
+    <invnum>abc5681234</invnum>
+    <lastname>Smith</lastname>
+    <payerid>BBEXK7Q7JBASG</payerid>
+    <payerstatus>verified</payerstatus>
+    <shipdiscamt>0</shipdiscamt>
+    <shippingamt>0</shippingamt>
+    <shiptocountryname>United States</shiptocountryname>
+    <taxamt>0</taxamt>
+    <timestamp>2016-01-08T10:34:24Z</timestamp>
+    <token>EC-46690288NG459311W</token>
+    <version>124.0</version>
+  </PayPalTxn>
+  <datacash_reference>3200900013649558</datacash_reference>
+  <merchantreference>Getrequest007</merchantreference>
+  <mode>LIVE</mode>
+  <status>1</status>
+</Response>

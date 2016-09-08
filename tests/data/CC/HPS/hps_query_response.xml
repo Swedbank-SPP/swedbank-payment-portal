@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response version="2">
+  <time>1463064451</time>
+  <reason>ACCEPTED</reason>
+  <HpsTxn>
+    <AuthAttempts>
+      <Attempt>
+        <RiskResponse>
+          <screening_response>
+            <cpi_value>test</cpi_value>
+            <response_code>00</response_code>
+            <response_message>Transaction Approved</response_message>
+          </screening_response>
+        </RiskResponse>
+        <datacash_reference>3400900013805977</datacash_reference>
+        <dc_response>1</dc_response>
+        <reason>ACCEPTED</reason>
+      </Attempt>
+    </AuthAttempts>
+    <datacash_reference>3400900013805977</datacash_reference>
+  </HpsTxn>
+  <datacash_reference>3600900013805976</datacash_reference>
+  <merchantreference>SPPtestHPS_1463064393</merchantreference>
+  <information>You have queried a Full-HPS transaction, where the payment was successfully collected</information>
+  <mode>LIVE</mode>
+  <status>1</status>
+</Response>

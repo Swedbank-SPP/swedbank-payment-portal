@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Request version="2">
+  <Authentication>
+    <password>********</password>
+    <client>********</client>
+  </Authentication>
+  <Transaction>
+    <TxnDetails>
+      <Risk>
+        <Action service="1">
+          <MerchantConfiguration>
+            <channel>W</channel>
+          </MerchantConfiguration>
+          <CustomerDetails>
+            <OrderDetails>
+              <BillingDetails>
+                <state_province>District of Columbia</state_province>
+                <name>Cardholder Name</name>
+                <zip_code>DC 20500</zip_code>
+                <address_line1>2000 Purchase Street</address_line1>
+                <address_line2></address_line2>
+                <city>Washington</city>
+                <country>US</country>
+              </BillingDetails>
+            </OrderDetails>
+            <PersonalDetails>
+              <first_name>Cardholder</first_name>
+              <surname>Name</surname>
+              <telephone>00 123 456 789</telephone>
+            </PersonalDetails>
+            <ShippingDetails>
+              <title>Mr</title>
+              <first_name>Cardholder</first_name>
+              <surname>Name</surname>
+              <address_line1>Landsvagen 40</address_line1>
+              <address_line2></address_line2>
+              <city>Stockholm</city>
+              <country>SE</country>
+              <zip_code>105 34</zip_code>
+            </ShippingDetails>
+            <PaymentDetails>
+              <payment_method>CC</payment_method>
+            </PaymentDetails>
+            <RiskDetails>
+              <ip_address>8.8.8.8</ip_address>
+              <email_address>e-mail@email.com</email_address>
+            </RiskDetails>
+          </CustomerDetails>
+        </Action>
+      </Risk>
+      <merchantreference>OrderNumber001/01</merchantreference>
+      <amount currency="EUR">10.00</amount>
+      <ThreeDSecure>
+        <purchase_datetime>20151015 09:00:00</purchase_datetime>
+        <verify>yes</verify>
+        <Browser>
+          <device_category>0</device_category>
+        </Browser>
+        <merchant_url>http://www.example.com</merchant_url>
+        <purchase_desc>Laptop</purchase_desc>
+      </ThreeDSecure>
+      <capturemethod>ecomm</capturemethod>
+    </TxnDetails>
+    <CardTxn>
+      <method>auth</method>
+      <card_details type="from_hps">4700204432740764</card_details>
+    </CardTxn>
+  </Transaction>
+</Request>

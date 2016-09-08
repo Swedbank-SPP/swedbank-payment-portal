@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Request version="2">
+  <Authentication>
+    <password>********</password>
+    <client>123</client>
+  </Authentication>
+  <Transaction>
+    <TxnDetails>
+      <merchantreference>ordernumber/01</merchantreference>
+    </TxnDetails>
+    <HpsTxn>
+      <page_set_id>1</page_set_id>
+      <method>setup_full</method>
+    </HpsTxn>
+    <APMTxns>
+      <APMTxn>
+        <method>purchase</method>
+        <payment_method>SW</payment_method>
+        <AlternativePayment version="2">
+          <TransactionDetails>
+            <Description>description</Description>
+            <SuccessURL>https://www.redirect.com/TestSite/Success.aspx</SuccessURL>
+            <FailureURL>https://www.redirect.com/TestSite/Failure.aspx</FailureURL>
+            <Language>en</Language>
+            <PersonalDetails>
+              <Email>test@example.com</Email>
+            </PersonalDetails>
+            <BillingDetails>
+              <AmountDetails>
+                <Amount>100</Amount>
+                <Exponent>2</Exponent>
+                <CurrencyCode>978</CurrencyCode>
+              </AmountDetails>
+            </BillingDetails>
+          </TransactionDetails>
+          <MethodDetails><ServiceType>LIT_BANK</ServiceType></MethodDetails>
+        </AlternativePayment>
+      </APMTxn>
+    </APMTxns>
+  </Transaction>
+</Request>

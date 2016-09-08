@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Request version="2">
+  <Authentication>
+    <password>gDarz27q</password>
+    <client>88120987</client>
+  </Authentication>
+  <Transaction>
+    <TxnDetails>
+      <Risk>
+        <Action service="1">
+          <MerchantConfiguration>
+            <channel>W</channel>
+          </MerchantConfiguration>
+          <CustomerDetails>
+            <OrderDetails>
+              <BillingDetails>
+                <state_province>testpro</state_province>
+                <name>Admin</name>
+                <zip_code>12345</zip_code>
+                <address_line1>Backer Street 221b</address_line1>
+                <address_line2>Backer Street 221c</address_line2>
+                <city>London</city>
+                <country>GB</country>
+              </BillingDetails>
+            </OrderDetails>
+            <PersonalDetails>
+              <first_name>Admin</first_name>
+              <surname>Admins</surname>
+              <telephone>123</telephone>
+            </PersonalDetails>
+            <ShippingDetails>
+              <title>Mr.</title>
+              <first_name>Admin</first_name>
+              <surname>Admins</surname>
+              <address_line1>Backer Street 221b</address_line1>
+              <address_line2>Backer Street 221c</address_line2>
+              <city>London</city>
+              <country>GB</country>
+              <zip_code>12345</zip_code>
+            </ShippingDetails>
+            <PaymentDetails>
+              <payment_method>CC</payment_method>
+            </PaymentDetails>
+            <RiskDetails>
+              <ip_address>85.206.55.250</ip_address>
+              <email_address>admin@admin.com</email_address>
+            </RiskDetails>
+          </CustomerDetails>
+        </Action>
+      </Risk>
+      <merchantreference>SPPtestHPS_1463064393</merchantreference>
+      <ThreeDSecure>
+        <purchase_datetime>20151211 16:01:02</purchase_datetime>
+        <verify>yes</verify>
+        <merchant_url>www.sppshop.eu</merchant_url>
+        <purchase_desc>Invoice nr: Demoshop_1211160054</purchase_desc>
+      </ThreeDSecure>
+      <capturemethod>ecomm</capturemethod>
+      <amount currency="EUR">1</amount>
+    </TxnDetails>
+    <HpsTxn>
+      <page_set_id>164</page_set_id>
+      <method>setup_full</method>
+      <return_url>https://www.sppshop.eu/spptest/card_auth_result.php</return_url>
+      <expiry_url>expired</expiry_url>
+      <error_url>https://www.sppshop.eu/spptest/card_error.php</error_url>
+      <DynamicData>
+        <dyn_data_4>https://www.sppshop.eu/spptest/index.php</dyn_data_4>
+      </DynamicData>
+    </HpsTxn>
+    <CardTxn>
+      <method>auth</method>
+    </CardTxn>
+  </Transaction>
+</Request>
