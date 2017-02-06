@@ -47,7 +47,7 @@ class UrlCallback implements CallbackInterface
         $httpClient->post(
             $this->url,
             [
-                'status' => $transactionResult->id()
+                'form_params' => ['status' => $transactionResult->id()]
             ]
         );
     }
