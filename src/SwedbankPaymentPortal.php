@@ -20,6 +20,16 @@ class SwedbankPaymentPortal
     private $container;
 
     /**
+     * @var ServiceOptions
+     */
+    private static $defaultServiceOptions;
+
+    /**
+     * @var SwedbankPaymentPortal
+     */
+    private static $defaultInstance;
+
+    /**
      * SwedbankPaymentPortal constructor.
      *
      * @param ServiceOptions $serviceOptions
@@ -27,6 +37,35 @@ class SwedbankPaymentPortal
     public function __construct(ServiceOptions $serviceOptions)
     {
         $this->container = (new Container())->getContainer($serviceOptions);
+    }
+
+    /**
+     * @param ServiceOptions $serviceOptions
+     */
+    public static function init(ServiceOptions $serviceOptions)
+    {
+        if (self::$defaultServiceOptions) {
+            throw new \RuntimeException(
+                "Swedbank Payment Portal: you are calling init() twice, if it's not an error and you want to reconfigure library then please use \$spp = new SwedbankPaymentPortal(\$options) if you need two type configurations."
+            );
+        }
+
+        self::$defaultServiceOptions = $serviceOptions;
+        self::$defaultInstance       = new SwedbankPaymentPortal($serviceOptions);
+    }
+
+    /**
+     * @return SwedbankPaymentPortal
+     */
+    public static function getInstance()
+    {
+        if (!self::$defaultServiceOptions) {
+            throw new \RuntimeException(
+                "Swedbank Payment Portal: first you must call SwedbankPaymentPortal::init() before calling getInstance()!"
+            );
+        }
+
+        return self::$defaultInstance;
     }
 
     /**
