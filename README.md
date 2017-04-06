@@ -346,6 +346,8 @@ $purchaseRequest = (new PurchaseBuilder())
 
  # HPS Example using UrlCalback
  
+ Replace sppdemoshop.eu to your shop address.
+ 
  **hps\_url\_calback\_hps.php**
  ```php
  namespace SwedbankPaymentPortal;
