@@ -376,7 +376,8 @@ use SwedbankPaymentPortal\CC\HPSCommunicationEntity\SetupRequest\Transaction\Car
 
 
 $auth = new Authentication('8*****','********'); // VtID and password
-// Generating unique merchant reference. To generate merchant reference please use your one logic. This is only example.
+// Generating unique merchant reference. To generate merchant reference 
+//please use your one logic. This is only example.
 $merchantReferenceId = 'ID235r'.strtotime('now'); 
 $purchaseAmount = '4.99'; // Euro and cents needs to be separated by dot.  
 
@@ -447,7 +448,8 @@ $hpsTxn = new Transaction\HPSTxn(
        'http://sppdemoshop.eu/confirm.php?way=confirmed&order_id='.$merchantReferenceId, // return url
        'http://sppdemoshop.eu/confirm.php?way=cancelled&order_id='.$merchantReferenceId, // error url
     164, // Page set ID
-    // Firs field to show in card input form Name and Surname field. Firs parameter goes as string 'show' or null. Second field is url for back button in card input form.
+    // Firs field to show in card input form Name and Surname field. 
+    //Firs parameter goes as string 'show' or null. Second field is url for back button in card input form.
     new Transaction\DynamicData(null, 'http://sppdemoshop.eu/') 
 );
 
@@ -506,7 +508,8 @@ if ($way == 'confirmed'){
   $spp = SwedbankPaymentPortal::getInstance();  // <- library usage
 
   $rez = $spp->getPaymentCardHostedPagesGateway()->hpsQuery($orderId); 
-  // now you can show user "thank you for your payment, but don't put flag what this payment is done. This is done in secretprocesor.php file
+  // now you can show user "thank you for your payment, but don't put flag 
+  //what this payment is done. This is done in secretprocesor.php file
   
   echo 'Thank you';
 } else if ($way == 'expiry'){
@@ -517,15 +520,17 @@ if ($way == 'confirmed'){
  ```
  
  **secretprocesor.php**
+ This file newer will be loaded in browser. This will be called by cron job.
   ```php
  $orderId = $_GET['order_id'];
  
  if($_POST['status'] === 'SUCCESS') {
-		echo 'Do action for success. This is final confirmations of success'; // now you can set flag what payment is success
+		//Do action for success. This is final confirmations of success
+		// now you can set flag what payment is success
 	} else if($_POST['status'] === 'FAIL') {
-		echo 'Do action if failed';
+		// Do action if failed
 	} else if($_POST['status'] === 'UNFINISHED'){
-		echo 'Do action if unfinished';
+		// Do action if unfinished
 	} else {
 	    // log this attempt 
 	}
