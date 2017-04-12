@@ -343,6 +343,212 @@ $purchaseRequest = (new PurchaseBuilder())
         )
     );
  ```
+ 
+ # HPS Example using calback (Recomended)
+ 
+ Replace sppdemoshop.eu to your shop address.
+ 
+ **callback.php**
+ This is example of callback. Callback function need be available in setup call and final process.
+ ```php
+use SwedbankPaymentPortal\BankLink\CommunicationEntity\HPSQueryResponse\HPSQueryResponse;
+use SwedbankPaymentPortal\BankLink\CommunicationEntity\NotificationQuery\ServerNotification;
+use SwedbankPaymentPortal\CallbackInterface;
+use SwedbankPaymentPortal\CC\PaymentCardTransactionData;
+use SwedbankPaymentPortal\SharedEntity\Type\TransactionResult;
+use SwedbankPaymentPortal\Transaction\TransactionFrame;
+
+class Swedbank_Ordering_Handler_PaymentCompletedCallback implements CallbackInterface
+{
+
+    private $merchantReferenceId;
+
+    public function __construct($merchantReferenceId)
+    {
+        $this->merchantReferenceId = $merchantReferenceId;
+    }
+
+    /**
+     * Method for handling finished transaction which ended because of the specified response status.
+     *
+     * @param TransactionResult         $status
+     * @param TransactionFrame          $transactionFrame
+     * @param PaymentCardTransactionData $creditCardTransactionData
+     */
+    public function handleFinishedTransaction(TransactionResult $status, 
+         TransactionFrame $transactionFrame, 
+         PaymentCardTransactionData $creditCardTransactionData = null)
+    {
+        if ($status == TransactionResult::success()) {
+            // success no you can put flag payment done
+        } else if ($status == TransactionResult::failure()) {
+            // failure. Do some action here
+        } else {
+            // unfinished payment
+        }
+	// This is only for debug. You can log into file if needed.
+        mail('YourEmail@domain.lt', 
+	    'DONE', print_r($status, true).print_r($transactionFrame, true).print_r($creditCardTransactionData, true)); 
+	    
+    }
+
+    public function serialize()
+    {
+        return json_encode(
+            [
+                'merchantReferenceId' => $this->merchantReferenceId
+            ]
+        );
+    }
+                    
+    public function unserialize($serialized)
+    {
+        $data = json_decode($serialized);
+
+        $this->merchantReferenceId = $data->merchantReferenceId;
+    }
+}
+ ```
+ 
+ **hps.php**
+ This is setup script
+ ```php
+ // in autoloader and library needed for HPS payment
+include dirname(__FILE__) . '/../SwedbankPaymentPortal/vendor/autoload.php';
+
+use SwedbankPaymentPortal\Options\CommunicationOptions;
+use SwedbankPaymentPortal\Options\ServiceOptions;
+use SwedbankPaymentPortal\SharedEntity\Authentication;
+use SwedbankPaymentPortal\SwedbankPaymentPortal;
+use SwedbankPaymentPortal\SharedEntity\Amount;
+use SwedbankPaymentPortal\CC\HPSCommunicationEntity\SetupRequest\SetupRequest;
+use SwedbankPaymentPortal\CC\HPSCommunicationEntity\SetupRequest\Transaction;
+use SwedbankPaymentPortal\CC\Type\ScreeningAction;
+use SwedbankPaymentPortal\CC\Type\TransactionChannel;
+use SwedbankPaymentPortal\CC\HPSCommunicationEntity\SetupRequest\Transaction\TxnDetails;
+use SwedbankPaymentPortal\CC\HPSCommunicationEntity\SetupRequest\Transaction\ThreeDSecure;
+use SwedbankPaymentPortal\CC\HPSCommunicationEntity\SetupRequest\Transaction\CardTxn;
+
+include dirname(__FILE__) . '/callback.php';
+
+$auth = new Authentication('*********', '*********'); // VtID and password
+// Generating unique merchant reference. To generate merchant reference 
+//please use your one logic. This is only example.
+$merchantReferenceId = 'ID235r' . strtotime('now');
+$purchaseAmount = '4.99'; // Euro and cents needs to be separated by dot.  
+
+$options = new ServiceOptions(
+        new CommunicationOptions(
+        'https://accreditation.datacash.com/Transaction/acq_a' //this is test environment 
+        // for production/live use this URL: https://mars.transaction.datacash.com/Transaction
+        ), $auth
+);
+
+SwedbankPaymentPortal::init($options);  // <- library  initiation
+$spp = SwedbankPaymentPortal::getInstance();  // <- library usage
+
+$riskAction = new Transaction\Action(
+        ScreeningAction::preAuthorization(), new Transaction\MerchantConfiguration(
+        TransactionChannel::web(), 'http://sppdemoshop.eu' //your shop URL
+        ), new Transaction\CustomerDetails(
+        new Transaction\BillingDetails(// Customer details
+        'Mr', // title
+        'Name Surname', // Name and surname
+        'Zip0000', // Post code
+        'Street address', // address line 1
+        '', // address line 2
+        'London', // City
+        'Unated States' // Country
+        ), new Transaction\PersonalDetails(// Personal details
+        'Name', // Required, Card holder name
+        'Surname', // Required. Card holder surname
+        '+3705555555' // Required. Card holder phone
+        ), new Transaction\ShippingDetails(// Shipping details
+        'Mr', // title
+        'Name', // name
+        'Surname', // surname
+        'Street address', // address line 1
+        '', // address line 2
+        'City', // City
+        'Unated Kingdom', // Country
+        'Zip0000' // Post code
+        ), new Transaction\RiskDetails(
+        '127.15.21.55', // Required. Card holder IP address
+        'test@test.lt' // Required. Card holder email
+        )
+        )
+);
+
+$txnDetails = new TxnDetails(
+        $riskAction, $merchantReferenceId, new Amount($purchaseAmount), new ThreeDSecure(
+        'Order nr: ' . $merchantReferenceId, 'http://sppdemoshop.eu/', new \DateTime()
+        )
+);
+
+$hpsTxn = new Transaction\HPSTxn(
+        'http://sppdemoshop.eu/test/hps_confirm.php?way=expiry&order_id=' . $merchantReferenceId, // expire url
+        'http://sppdemoshop.eu/test/hps_confirm.php?way=confirmed&order_id=' . $merchantReferenceId, // return url
+        'http://sppdemoshop.eu/test/hps_confirm.php?way=cancelled&order_id=' . $merchantReferenceId, // error url
+        164, // Page set ID
+        // Firs field to show in card input form Name and Surname field. 
+        //Firs parameter goes as string 'show' or null. Second field is url for back button in card input form.
+        new Transaction\DynamicData(null, 'http://sppdemoshop.eu/')
+);
+
+$transaction = new Transaction($txnDetails, $hpsTxn, new CardTxn());
+$setupRequest = new SetupRequest($auth, $transaction);
+$response = $spp->getPaymentCardHostedPagesGateway()->initPayment(
+        $setupRequest,
+        new Swedbank_Ordering_Handler_PaymentCompletedCallback($merchantReferenceId)
+);
+$url = $response->getCustomerRedirectUrl(); // Getting redirect url
+header('Location: ' . $url); // redirecting card holder to card input form.
+ ```
+ 
+**hps\_confirm.php**
+This is final payment process
+
+```php
+namespace SwedbankPaymentPortal;
+
+include dirname(__FILE__).'/../SwedbankPaymentPortal/vendor/autoload.php';
+
+use SwedbankPaymentPortal\Options\CommunicationOptions;
+use SwedbankPaymentPortal\Options\ServiceOptions;
+use SwedbankPaymentPortal\SharedEntity\Authentication;
+use SwedbankPaymentPortal\SwedbankPaymentPortal;
+
+include dirname(__FILE__) . '/callback.php';
+
+
+$orderId = $_GET['order_id'];
+$way  = $_GET['way'];
+
+if ($way == 'confirmed'){
+  $auth = new Authentication('*********','***********');
+  $options = new ServiceOptions(
+      new CommunicationOptions(
+        'https://accreditation.datacash.com/Transaction/acq_a' //this is test environment 
+		// for production/live use this URL: https://mars.transaction.datacash.com/Transaction
+      ),
+   $auth
+  );
+  SwedbankPaymentPortal::init($options);  // <- library  initiation
+  $spp = SwedbankPaymentPortal::getInstance();  // <- library usage
+
+  $rez = $spp->getPaymentCardHostedPagesGateway()->hpsQuery($orderId); 
+  // now you can show user "thank you for your payment, but don't put flag 
+  //flag need to put inside callback
+  
+  echo 'Thank you';
+} else if ($way == 'expiry'){
+	echo 'Session expired';
+	// do same logic if seesion expired
+} else { // cancelled
+	echo 'Payment cancelled';
+	// do some action for cancel logic
+}
+```
 
  # HPS Example using UrlCalback
  
@@ -350,20 +556,14 @@ $purchaseRequest = (new PurchaseBuilder())
  
  **hps\_url\_calback\_hps.php**
  ```php
- namespace SwedbankPaymentPortal;
+namespace SwedbankPaymentPortal;
 // in autoloader and library needed for HPS payment
 include dirname(__FILE__).'/SwedbankPaymentPortal/vendor/autoload.php'; 
 
 use SwedbankPaymentPortal\Options\CommunicationOptions;
 use SwedbankPaymentPortal\Options\ServiceOptions;
 use SwedbankPaymentPortal\SharedEntity\Authentication;
-use SwedbankPaymentPortal\SharedEntity\Type;
 use SwedbankPaymentPortal\SwedbankPaymentPortal;
-use SwedbankPaymentPortal\CallbackInterface;
-
-use SwedbankPaymentPortal\CC\PaymentCardTransactionData;
-use SwedbankPaymentPortal\SharedEntity\Type\TransactionResult;
-use SwedbankPaymentPortal\Transaction\TransactionFrame;
 
 use SwedbankPaymentPortal\SharedEntity\Amount;
 use SwedbankPaymentPortal\CC\HPSCommunicationEntity\SetupRequest\SetupRequest;
@@ -467,30 +667,13 @@ die();
  
  **confirm.php**
   ```php
- namespace SwedbankPaymentPortal;
 
 include dirname(__FILE__).'/SwedbankPaymentPortal/vendor/autoload.php';
 
 use SwedbankPaymentPortal\Options\CommunicationOptions;
 use SwedbankPaymentPortal\Options\ServiceOptions;
 use SwedbankPaymentPortal\SharedEntity\Authentication;
-use SwedbankPaymentPortal\SharedEntity\Type;
 use SwedbankPaymentPortal\SwedbankPaymentPortal;
-use SwedbankPaymentPortal\CallbackInterface;
-
-use SwedbankPaymentPortal\CC\PaymentCardTransactionData;
-use SwedbankPaymentPortal\SharedEntity\Type\TransactionResult;
-use SwedbankPaymentPortal\Transaction\TransactionFrame;
-
-use SwedbankPaymentPortal\SharedEntity\Amount;
-use SwedbankPaymentPortal\CC\HPSCommunicationEntity\SetupRequest\SetupRequest;
-use SwedbankPaymentPortal\CC\HPSCommunicationEntity\SetupRequest\Transaction;
-use SwedbankPaymentPortal\CC\Type\ScreeningAction;
-use SwedbankPaymentPortal\CC\Type\TransactionChannel;
-use SwedbankPaymentPortal\CC\HPSCommunicationEntity\SetupRequest\Transaction\TxnDetails;
-use SwedbankPaymentPortal\CC\HPSCommunicationEntity\SetupRequest\Transaction\ThreeDSecure;
-use SwedbankPaymentPortal\CC\HPSCommunicationEntity\SetupRequest\Transaction\CardTxn;
-use SwedbankPaymentPortal\CC\HPSCommunicationEntity\HPSQueryResponse\HPSQueryResponse;
 
 $orderId = $_GET['order_id'];
 $way  = $_GET['way'];
