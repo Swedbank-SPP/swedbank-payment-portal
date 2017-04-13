@@ -33,7 +33,7 @@ and rum "composer update" in command prompt or shell.
 
 Alternative you can execute "composer require swedbank-spp/swedbank-payment-portal" from your command prompt or shell.
 
-### Projects which doesn`t have composer installed
+### Projects which doesn\`t have composer installed
 
 + First download composer to your project root folder ( https://getcomposer.org/composer.phar )
 + Run command: php composer.phar init
