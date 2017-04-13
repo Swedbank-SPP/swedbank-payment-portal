@@ -344,7 +344,7 @@ $purchaseRequest = (new PurchaseBuilder())
     );
  ```
  
- # HPS Example using calback (Recomended)
+ # HPS Example using calback
  
  Replace sppdemoshop.eu to your shop address.
  
@@ -552,7 +552,7 @@ if ($way == 'confirmed'){
 
  # HPS Example using UrlCalback
  
- Replace sppdemoshop.eu to your shop address.
+ Replace sppdemoshop.eu to your shop address. Use this only if you can't use above example.
  
  **hps\_url\_calback\_hps.php**
  ```php
@@ -719,3 +719,200 @@ if ($way == 'confirmed'){
 	}
     
  ```
+
+# Bank link
+
+Replace sppdemoshop.eu to your shop address.
+
+**banklink_setup.php**
+```php
+// in autoloader and library needed for banklink payment
+include dirname(__FILE__) . '/../SwedbankPaymentPortal/vendor/autoload.php';
+
+use SwedbankPaymentPortal\Options\CommunicationOptions;
+use SwedbankPaymentPortal\Options\ServiceOptions;
+use SwedbankPaymentPortal\SharedEntity\Authentication;
+use SwedbankPaymentPortal\SwedbankPaymentPortal;
+
+use SwedbankPaymentPortal\BankLink\PurchaseBuilder;
+use SwedbankPaymentPortal\BankLink\CommunicationEntity\Type\PaymentMethod;
+use SwedbankPaymentPortal\BankLink\CommunicationEntity\Type\ServiceType;
+
+include dirname(__FILE__) . '/callback.php';
+
+$auth = new Authentication('*******', '********'); // VtID and password
+// Generating unique merchant reference. To generate merchant reference 
+//please use your one logic. This is only example.
+$merchantReferenceId = 'ID235r' . strtotime('now');
+
+$options = new ServiceOptions(
+        new CommunicationOptions(
+        'https://accreditation.datacash.com/Transaction/acq_a' //this is test environment 
+        // for production/live use this URL: https://mars.transaction.datacash.com/Transaction
+        ), $auth
+);
+
+SwedbankPaymentPortal::init($options);  // <- library  initiation
+$spp = SwedbankPaymentPortal::getInstance();  // <- library usage
+
+
+$purchaseAmount = 1500; // 15 Eur 00 ct
+
+
+$purchaseRequest = (new PurchaseBuilder())
+    ->setDescription("SPP demoshop Order $merchantReferenceId")
+    ->setAmountValue($purchaseAmount)
+    ->setAmountExponent(2)
+    ->setAmountCurrencyCode(978)// for EUR
+    ->setConsumerEmail("customer@email.com")
+    /*
+ServiceType::swdBank() - SWEDBANK AB (SWEDEN)
+ServiceType::nrdSwd() - NORDEA BANK AB (SWEDEN)
+ServiceType::sebSwd() - SKANDINAVISKA ENSKILDA BANKEN AB (SWEDEN)
+ServiceType::estBank() - SWEDBANK AS (ESTONIA)
+ServiceType::sebEst() - SEB AS Pank (ESTONIA)
+ServiceType::nrdEst() - Nordea Bank AB Estonia Branch (ESTONIA)
+ServiceType::ltvBank() - SWEDBANK AS (LATVIA)
+ServiceType::sebLtv() - SEB AS banka (LATVIA)
+ServiceType::litBank() - SWEDBANK AB (LITHUANIA)
+ServiceType::sebLit() - SEB AB bankas (LITHUANIA)
+ServiceType::nrdLit() - NORDEA BANK AB LITHUANIA BRANCH (LITHUANIA)
+*/        
+    ->setServiceType(ServiceType::litBank())
+/*
+PaymentMethod::swedbank() - SWEDBANK AB (SWEDEN)
+PaymentMethod::nordea() - NORDEA BANK AB (SWEDEN)
+PaymentMethod::svenska() - SVENSKA HANDELSBANKEN AB (SWEDEN)
+PaymentMethod::seb() - SKANDINAVISKA ENSKILDA BANKEN AB (SWEDEN)
+PaymentMethod::swedbank() - SWEDBANK AS (ESTONIA)
+PaymentMethod::seb() - SEB AS Pank (ESTONIA)
+PaymentMethod::nordea() - Nordea Bank AB Estonia Branch (ESTONIA)
+PaymentMethod::swedbank() - SWEDBANK AS (LATVIA)
+PaymentMethod::seb() - SEB AS banka (LATVIA)
+PaymentMethod::citadele() - AS CITADELE BANKA (LATVIA)
+PaymentMethod::swedbank() - SWEDBANK AB (LITHUANIA)
+PaymentMethod::seb() - SEB AB bankas (LITHUANIA)
+PaymentMethod::dnb() - AB DNB BANKAS (LITHUANIA)
+PaymentMethod::nordea() - NORDEA BANK AB LITHUANIA BRANCH (LITHUANIA)
+PaymentMethod::danske() - DANSKE BANK AS LITHUANIA BRANCH (LITHUANIA)
+*/
+    ->setPaymentMethod(PaymentMethod::swedbank())
+    ->setSuccessUrl('http://sppdemoshop.eu/test/banklink_confirm.php?way=confirmed&order_id=' . $merchantReferenceId) // see chapter “Success / Failure URL Handling” for more info
+    ->setFailureUrl('http://sppdemoshop.eu/test/banklink_confirm.php?way=cancelled&order_id=' . $merchantReferenceId)
+    ->setMerchantReference($merchantReferenceId)
+    ->setLanguage("lt")
+    ->setPageSetId(1) // Always 1
+    ->getPurchaseRequest();
+
+    $response = $spp->getBankLinkGateway()->initPayment(
+        $purchaseRequest,
+        new Swedbank_Ordering_Handler_PaymentCompletedCallback(
+            $merchantReferenceId
+        )
+    );
+
+$url = $response->getCustomerRedirectUrl(); // Getting redirect url
+header('Location: ' . $url); // redirecting card holder to card input form.
+```
+
+**callback.php**
+```php
+use SwedbankPaymentPortal\BankLink\CommunicationEntity\HPSQueryResponse\HPSQueryResponse;
+use SwedbankPaymentPortal\BankLink\CommunicationEntity\NotificationQuery\ServerNotification;
+use SwedbankPaymentPortal\CallbackInterface;
+use SwedbankPaymentPortal\CC\PaymentCardTransactionData;
+use SwedbankPaymentPortal\SharedEntity\Type\TransactionResult;
+use SwedbankPaymentPortal\Transaction\TransactionFrame;
+
+class Swedbank_Ordering_Handler_PaymentCompletedCallback implements CallbackInterface
+{
+
+    private $merchantReferenceId;
+
+    public function __construct($merchantReferenceId)
+    {
+        $this->merchantReferenceId = $merchantReferenceId;
+    }
+
+    /**
+     * Method for handling finished transaction which ended because of the specified response status.
+     *
+     * @param TransactionResult         $status
+     * @param TransactionFrame          $transactionFrame
+     * @param PaymentCardTransactionData $creditCardTransactionData
+     */
+    public function handleFinishedTransaction(TransactionResult $status, 
+         TransactionFrame $transactionFrame, 
+         PaymentCardTransactionData $creditCardTransactionData = null)
+    {
+        if ($status == TransactionResult::success()) {
+            // success no you can put flag payment done
+        } else if ($status == TransactionResult::failure()) {
+            // failure. Do some action here
+        } else {
+            // unfinished payment
+        }
+	// This is only for debug. You can log into file if needed.
+        mail('YourEmail@domain.lt', 
+	    'DONE', print_r($status, true).print_r($transactionFrame, true).print_r($creditCardTransactionData, true)); 
+	    
+    }
+
+    public function serialize()
+    {
+        return json_encode(
+            [
+                'merchantReferenceId' => $this->merchantReferenceId
+            ]
+        );
+    }
+                    
+    public function unserialize($serialized)
+    {
+        $data = json_decode($serialized);
+
+        $this->merchantReferenceId = $data->merchantReferenceId;
+    }
+}
+```
+
+**banklink_confirm.php**
+```php
+namespace SwedbankPaymentPortal;
+
+include dirname(__FILE__).'/../SwedbankPaymentPortal/vendor/autoload.php';
+
+use SwedbankPaymentPortal\Options\CommunicationOptions;
+use SwedbankPaymentPortal\Options\ServiceOptions;
+use SwedbankPaymentPortal\SharedEntity\Authentication;
+use SwedbankPaymentPortal\SwedbankPaymentPortal;
+
+include dirname(__FILE__) . '/callback.php';
+
+
+$orderId = $_GET['order_id'];
+$way  = $_GET['way'];
+
+if ($way == 'confirmed'){
+  $auth = new Authentication('88120855', 'tZZrAsjq');
+  $options = new ServiceOptions(
+      new CommunicationOptions(
+        'https://accreditation.datacash.com/Transaction/acq_a' //this is test environment 
+		// for production/live use this URL: https://mars.transaction.datacash.com/Transaction
+      ),
+   $auth
+  );
+  SwedbankPaymentPortal::init($options);  // <- library  initiation
+  $spp = SwedbankPaymentPortal::getInstance();  // <- library usage
+
+  $rez = $spp->getBankLinkGateway()->handlePendingTransaction($orderId); 
+  // now you can show user "thank you for your payment, but don't put flag 
+  //flag need to put inside callback
+  
+  echo 'Thank you';
+} else { // cancelled
+	echo 'Payment cancelled';
+	// do some action for cancel logic
+}
+```
+
