@@ -894,7 +894,7 @@ $orderId = $_GET['order_id'];
 $way  = $_GET['way'];
 
 if ($way == 'confirmed'){
-  $auth = new Authentication('88120855', 'tZZrAsjq');
+  $auth = new Authentication('******', '*****');
   $options = new ServiceOptions(
       new CommunicationOptions(
         'https://accreditation.datacash.com/Transaction/acq_a' //this is test environment 
