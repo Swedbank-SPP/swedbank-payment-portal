@@ -300,19 +300,19 @@ Here is a table of available banks and what serviceType and paymentMethod you ne
  --- | --- | ---
  SWEDBANK AB (SWEDEN) | ServiceType::swdBank() | PaymentMethod::swedbank()
  NORDEA BANK AB (SWEDEN) | ServiceType::nrdSwd() | PaymentMethod::nordea()
- SVENSKA HANDELSBANKEN AB (SWEDEN) |  | PaymentMethod::svenska()
+ SVENSKA HANDELSBANKEN AB (SWEDEN) | ServiceType::undefined() | PaymentMethod::svenska()
  SKANDINAVISKA ENSKILDA BANKEN AB (SWEDEN) | ServiceType::sebSwd() | PaymentMethod::seb()
  SWEDBANK AS (ESTONIA) | ServiceType::estBank() | PaymentMethod::swedbank()
  SEB AS Pank (ESTONIA) | ServiceType::sebEst() | PaymentMethod::seb()
  Nordea Bank AB Estonia Branch (ESTONIA) | ServiceType::nrdEst() | PaymentMethod::nordea()
  SWEDBANK AS (LATVIA) | ServiceType::ltvBank() | PaymentMethod::swedbank()
  SEB AS banka (LATVIA) | ServiceType::sebLtv() | PaymentMethod::seb()
- AS CITADELE BANKA (LATVIA) |  | PaymentMethod::citadele()
+ AS CITADELE BANKA (LATVIA) | ServiceType::undefined() | PaymentMethod::citadele()
  SWEDBANK AB (LITHUANIA) | ServiceType::litBank() | PaymentMethod::swedbank()
  SEB AB bankas (LITHUANIA) | ServiceType::sebLit() | PaymentMethod::seb()
- AB DNB BANKAS (LITHUANIA) |  | PaymentMethod::dnb()
+ AB DNB BANKAS (LITHUANIA) | ServiceType::undefined() | PaymentMethod::dnb()
  NORDEA BANK AB LITHUANIA BRANCH (LITHUANIA) | ServiceType::nrdLit() | PaymentMethod::nordea()
- DANSKE BANK AS LITHUANIA BRANCH (LITHUANIA) |  | PaymentMethod::danske()
+ DANSKE BANK AS LITHUANIA BRANCH (LITHUANIA) | ServiceType::undefined() | PaymentMethod::danske()
  
  Example how to initiate banklink payment:
  
