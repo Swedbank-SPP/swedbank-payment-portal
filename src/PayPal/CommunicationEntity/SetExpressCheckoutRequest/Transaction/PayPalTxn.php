@@ -176,7 +176,7 @@ class PayPalTxn
      * @param string          $cancelUrl
      */
     public function __construct(
-        ShippingAddress $shippingAddress,
+        ShippingAddress $shippingAddress = null,
         $custom,
         $description,
         $email,

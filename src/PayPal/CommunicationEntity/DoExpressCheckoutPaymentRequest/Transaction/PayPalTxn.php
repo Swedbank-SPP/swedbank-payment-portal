@@ -52,7 +52,7 @@ class PayPalTxn
      * @param ShippingAddress $shippingAddress
      * @param string          $reference
      */
-    public function __construct(ShippingAddress $shippingAddress, $reference)
+    public function __construct(ShippingAddress $shippingAddress = null, $reference)
     {
         $this->shippingAddress = $shippingAddress;
         $this->reference = $reference;

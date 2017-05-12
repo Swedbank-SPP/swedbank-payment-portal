@@ -43,4 +43,22 @@ class DoExpressCheckoutRequestTest extends AbstractCommunicationEntityTest
 
         $this->assertEquals($xml, $this->serializer->getXml($expected));
     }
+
+    public function testDoExpressCheckoutRequestWithoutShippingAddress()
+    {
+        $authentication = new Authentication('*******', '***');
+        $payPalTxn = new Transaction\PayPalTxn(
+            null,
+            '3700900013649551'
+        );
+        $txnDetails = new Transaction\TxnDetails(new Amount('10.00'), 'Do Express 007');
+        $transaction = new Transaction($txnDetails, $payPalTxn);
+        $expected = new DoExpressCheckoutPaymentRequest($transaction, $authentication);
+
+        $xml = file_get_contents(__DIR__ . '/../../data/PayPal/do_express_checkout_payment_request_docs_sample_without_address.xml');
+
+        $this->assertEquals($expected, $this->serializer->getObject($xml, DoExpressCheckoutPaymentRequest::class));
+
+        $this->assertEquals($xml, $this->serializer->getXml($expected));
+    }
 }

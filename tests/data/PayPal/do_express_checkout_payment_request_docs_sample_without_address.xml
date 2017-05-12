@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Request version="2">
+  <Authentication>
+    <password>***</password>
+    <client>*******</client>
+  </Authentication>
+  <Transaction>
+    <PayPalTxn>
+      <method>do_express_checkout_payment</method>
+      <reference>3700900013649551</reference>
+    </PayPalTxn>
+    <TxnDetails>
+      <amount currency="EUR">10.00</amount>
+      <merchantreference>Do Express 007</merchantreference>
+    </TxnDetails>
+  </Transaction>
+</Request>
