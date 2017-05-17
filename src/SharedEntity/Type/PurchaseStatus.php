@@ -66,6 +66,22 @@ class PurchaseStatus extends AbstractStatus
     }
 
     /**
+     * VERes error response received
+     *
+     * This return code applies to the 3-D Secure system, when attempting to initiate the 3DS check on a card.
+     * This response will be generated if the Directory Server generates a VERes that indicates a problem with the transaction.
+     * In most cases, the VERes will contain additional information about the cause of the message. If this is the case,
+     * it will be available in the XML Response within the information element.
+     *
+     * @return PurchaseStatus
+     *
+     */
+    final public static function VEResErrorResponseReceived()
+    {
+        return self::get(196);
+    }
+
+    /**
      * Cannot locate transaction to query.
      *
      * @return PurchaseStatus
@@ -97,6 +113,19 @@ class PurchaseStatus extends AbstractStatus
     }
 
     /**
+     * HPS: You have queried a Full-HPS transaction, where the card details are waiting to be collected
+     * If this return code is received , your system should wait a few minutes before sending another query transaction
+     * to the Payment Gateway (DPG/DataCash Platform).
+     * During this time period, the customer may have completed their payment.
+     *
+     * @return PurchaseStatus
+     */
+    final public static function awaitingForCustomerCardDetails()
+    {
+        return self::get(820);
+    }
+
+    /**
      * HPS: At least one auth attempted. Awaiting payment details.
      *
      * @return PurchaseStatus
@@ -114,6 +143,16 @@ class PurchaseStatus extends AbstractStatus
     final public static function HpsMaximumNumberOfRetryTransactionWasBreached()
     {
         return self::get(822);
+    }
+
+    /**
+     * HPS: You have queried a Full-HPS transaction, where the customer did not complete before the HPS session expired.
+     *
+     * @return PurchaseStatus
+     */
+    final public static function HpsSessionTimedOut()
+    {
+        return self::get(823);
     }
 
     /**
