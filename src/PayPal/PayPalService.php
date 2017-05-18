@@ -123,12 +123,12 @@ class PayPalService extends AbstractService
             $transactionFrame->setResponse($response);
 
             $transactionResult = TransactionResult::failure();
-            if ($response->getPayPalTxn()->getPaymentStatus() === PaymentStatus::completed()) {
+            if ($response->getPayPalTxn()->getPaymentStatus() == PaymentStatus::completed()) {
                 $transactionResult = TransactionResult::success();
             }
 
-        $transactionContainer->getCallback()->handleFinishedTransaction($transactionResult, $transactionFrame);
-        $this->getTransactionRepository()->remove($merchantReference);
+            $transactionContainer->getCallback()->handleFinishedTransaction($transactionResult, $transactionFrame);
+            $this->getTransactionRepository()->remove($merchantReference);
 
             return $response;
         } catch (\Exception $e) {
