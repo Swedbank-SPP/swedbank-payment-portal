@@ -39,6 +39,7 @@ class ResponseStatus extends AbstractStatus
     final public static function CardHasAlreadyExpired() { return self::get(24); }
     final public static function CardNumberInvalid() { return self::get(25); }
 
+    final public static function VEResErrorResponseReceived() { return self::get(196); }
     final public static function ThreeDSPayerFailedVerification() { return self::get(179); } // ??
 
     final public static function HpsInappropriateDataSupplied() { return self::get(810); }

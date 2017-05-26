@@ -165,7 +165,7 @@ class HPSService extends AbstractService
      */
     private function handleHPSResponse(HPSQueryResponse $response)
     {
-        if (count($response->getHpsTxn()->getAuthAttempts()) == 0) {
+        if (!$response->getHpsTxn() || count($response->getHpsTxn()->getAuthAttempts()) == 0) {
             return TransactionResult::unfinished();
         }
 
