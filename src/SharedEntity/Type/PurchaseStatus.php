@@ -156,6 +156,27 @@ class PurchaseStatus extends AbstractStatus
     }
 
     /**
+     * HPS: You have queried a Full-HPS transaction, where the customer has been sent for ACS validation
+     *
+     * @return PurchaseStatus
+     */
+    final public static function HpsQueringTransactionWHereCustomerBeenSentForAcsValidation()
+    {
+        return self::get(824);
+    }
+
+
+    /**
+     * HPS: You have queried a Full-HPS transaction, where the transaction is awaiting authorization
+     *
+     * @return PurchaseStatus
+     */
+    final public static function HpsAwaitingAuthorization()
+    {
+        return self::get(828);
+    }
+
+    /**
      * System error
      *
      * @return PurchaseStatus
