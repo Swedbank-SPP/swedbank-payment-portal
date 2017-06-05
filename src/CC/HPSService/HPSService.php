@@ -131,8 +131,14 @@ class HPSService extends AbstractService
     {
         $errors = [];
 
-        foreach ($this->getTransactionRepository()->getPendingTransactions() as $transaction) {
+        $transactionRepository = $this->getTransactionRepository();
+
+        foreach ($transactionRepository->getPendingTransactions() as $transaction) {
             if ($this->shouldQueryTransaction($transaction)) {
+
+                $transaction->setLastQueryingTime(new \DateTime());
+                $transactionRepository->persist($transaction);
+
                 try {
                     $this->hpsQuery($transaction->getKey());
                 } catch (\Exception $e) {
