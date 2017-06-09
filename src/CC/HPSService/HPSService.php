@@ -53,11 +53,51 @@ class HPSService extends AbstractService
     }
 
     /**
-     * Continues with a hps query.
+     * Handles unfinished transactions.
+     *
+     * Note: this library will handle all transaction logic automatically.
+     * All information about transaction it's credit card details etc. will be passed to callback which
+     * was defined during initPayment() call.
+     *
+     * Note2: after this method call transaction can still be left in unfinished state, so do not
+     * forget to call checkPendingTransactions() in some cron job which tries to handle all pending unfinished transactions.
+     *
+     * Note3: Callback is called only when transaction is finished (e.g. it's status is SUCCESS or FAIL)
+     *
+     * Note4: If in some case you'll need only low level communication within SPP, you can use getCommunication() method
+     * to get an underlying object which is responsible for low level communication and do SPP calls directly, but
+     * doing that you'll get no benefits of SPP library itself (no transaction handling logic).
+     *
+     *
+     * @param string $merchantReferenceId
+     * @return TransactionResult
+     */
+    public function handlePendingTransaction($merchantReferenceId)
+    {
+        return $this->hpsQuery($merchantReferenceId);
+    }
+
+    /**
+     * Handles unfinished transactions.
+     *
+     * Note: this library will handle all transaction logic automatically.
+     * All information about transaction it's credit card details etc. will be passed to callback which
+     * was defined during initPayment() call.
+     *
+     * Note2: after this method call transaction can still be left in unfinished state, so do not
+     * forget to call checkPendingTransactions() in some cron job which tries to handle all pending unfinished transactions.
+     *
+     * Note3: Callback is called only when transaction is finished (e.g. it's status is SUCCESS or FAIL)
+     *
+     * Note4: If in some case you'll need only low level communication within SPP, you can use getCommunication() method
+     * to get an underlying object which is responsible for low level communication and do SPP calls directly, but
+     * doing that you'll get no benefits of SPP library itself (no transaction handling logic).
+     *
      *
      * @param string $merchantReference
+     * @return TransactionResult
      *
-     * @return HPSQueryResponse
+     * @deprecated use handlePendingTransaction(), this method will be removed in v1.0 version
      */
     public function hpsQuery($merchantReference)
     {
@@ -99,7 +139,7 @@ class HPSService extends AbstractService
             $this->getTransactionRepository()->persist($transactionContainer);
         }
 
-        return $response;
+        return $transactionResult;
     }
 
 
