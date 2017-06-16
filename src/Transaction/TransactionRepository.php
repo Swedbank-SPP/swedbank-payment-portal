@@ -111,6 +111,7 @@ class TransactionRepository implements TransactionRepositoryInterface
             'pending_results'             => $transactionContainer->isPendingResult(),
             'entered_to_success_url_time' => $transactionContainer->getEnteredToSuccessUrlTime(),
             'last_querying_time'          => $transactionContainer->getLastQueryingTime(),
+            'created_at'                  => $transactionContainer->getCreatedAt(),
         ];
 
         foreach ($transactionContainer->getFrames() as $frame) {
@@ -160,7 +161,8 @@ class TransactionRepository implements TransactionRepositoryInterface
             $arrayData['callback'],
             $arrayData['pending_results'],
             $arrayData['entered_to_success_url_time'],
-            $arrayData['last_querying_time']
+            $arrayData['last_querying_time'],
+            isset($arrayData['created_at']) ? $arrayData['created_at'] : null
         );
 
         foreach ($arrayData['frames'] as $frame) {

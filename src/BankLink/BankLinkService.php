@@ -146,16 +146,17 @@ class BankLinkService extends AbstractService
         foreach ($transactionRepository->getPendingTransactions() as $unfinishedTransaction) {
 
             if ($this->shouldQueryTransaction($unfinishedTransaction)) {
+                if ($this->checkIfTransactionIsNotExpired($unfinishedTransaction)) {
 
-                $unfinishedTransaction->setLastQueryingTime(new \DateTime());
-                $transactionRepository->persist($unfinishedTransaction);
+                    $unfinishedTransaction->setLastQueryingTime(new \DateTime());
+                    $transactionRepository->persist($unfinishedTransaction);
 
-                try {
-                    $this->handlePendingUnfinishedResponse($unfinishedTransaction->getFirstFrame());
-                } catch (\Exception $e) {
-                    $errors [] = $e;
+                    try {
+                        $this->handlePendingUnfinishedResponse($unfinishedTransaction->getFirstFrame());
+                    } catch (\Exception $e) {
+                        $errors [] = $e;
+                    }
                 }
-
             }
         }
 

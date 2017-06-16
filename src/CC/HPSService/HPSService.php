@@ -13,6 +13,7 @@ use SwedbankPaymentPortal\CC\HPSCommunicationEntity\HPSQueryResponse\ResponseSta
 use SwedbankPaymentPortal\CC\HPSCommunicationEntity\SetupRequest\SetupRequest;
 use SwedbankPaymentPortal\CC\HPSCommunicationEntity\SetupResponse\SetupResponse;
 use SwedbankPaymentPortal\SharedEntity\HPSQueryRequest\Transaction;
+use SwedbankPaymentPortal\SharedEntity\Type\PurchaseStatus;
 use SwedbankPaymentPortal\SharedEntity\Type\TransactionResult;
 use SwedbankPaymentPortal\Transaction\TransactionContainer;
 use SwedbankPaymentPortal\Transaction\TransactionFrame;
@@ -175,14 +176,15 @@ class HPSService extends AbstractService
 
         foreach ($transactionRepository->getPendingTransactions() as $transaction) {
             if ($this->shouldQueryTransaction($transaction)) {
+                if ($this->checkIfTransactionIsNotExpired($transaction)) {
+                    $transaction->setLastQueryingTime(new \DateTime());
+                    $transactionRepository->persist($transaction);
 
-                $transaction->setLastQueryingTime(new \DateTime());
-                $transactionRepository->persist($transaction);
-
-                try {
-                    $this->hpsQuery($transaction->getKey());
-                } catch (\Exception $e) {
-                    $errors [] = $e;
+                    try {
+                        $this->hpsQuery($transaction->getKey());
+                    } catch (\Exception $e) {
+                        $errors [] = $e;
+                    }
                 }
             }
         }
@@ -211,6 +213,10 @@ class HPSService extends AbstractService
      */
     private function handleHPSResponse(HPSQueryResponse $response)
     {
+        if ($response->getStatus() == PurchaseStatus::HpsSessionTimedOut()) {
+            return TransactionResult::failure();
+        }
+
         if (!$response->getHpsTxn() || count($response->getHpsTxn()->getAuthAttempts()) == 0) {
             return TransactionResult::unfinished();
         }

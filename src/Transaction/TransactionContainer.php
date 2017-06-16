@@ -39,6 +39,11 @@ class TransactionContainer
      */
     private $lastQueryingTime;
 
+    /**
+     * @var \DateTime
+     */
+    private $createdAt;
+
 
     /**
      * TransactionContainer constructor.
@@ -48,14 +53,16 @@ class TransactionContainer
      * @param bool              $pendingResult
      * @param \DateTime         $enteredToSuccessUrlTime
      * @param \DateTime         $lastQueryingTime
+     * @param \DateTime|null    $createdAt
      */
-    public function __construct($key, CallbackInterface $callback, $pendingResult = true, \DateTime $enteredToSuccessUrlTime = null, \DateTime $lastQueryingTime = null)
+    public function __construct($key, CallbackInterface $callback, $pendingResult = true, \DateTime $enteredToSuccessUrlTime = null, \DateTime $lastQueryingTime = null, \DateTime $createdAt = null)
     {
         $this->key = $key;
         $this->callback = $callback;
         $this->enteredToSuccessUrlTime = $enteredToSuccessUrlTime;
         $this->pendingResult = $pendingResult;
         $this->lastQueryingTime = $lastQueryingTime ? $lastQueryingTime : new \DateTime();
+        $this->createdAt = $createdAt ? $createdAt : new \DateTime();
     }
 
     /**
@@ -65,6 +72,17 @@ class TransactionContainer
     {
         $frames = $this->getFrames();
         return reset($frames);
+    }
+
+    /**
+     * @return TransactionFrame|null
+     */
+    public function getLastFrame()
+    {
+        $frames = $this->getFrames();
+        $size   = count($frames);
+
+        return $size > 0 ? $frames[$size - 1] : null;
     }
 
     /**
@@ -177,5 +195,13 @@ class TransactionContainer
     public function setLastQueryingTime(\DateTime $lastQueryingTime)
     {
         $this->lastQueryingTime = $lastQueryingTime;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
     }
 }

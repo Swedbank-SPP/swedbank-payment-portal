@@ -2,6 +2,8 @@
 
 namespace SwedbankPaymentPortal;
 
+use SwedbankPaymentPortal\SharedEntity\Type\TransactionResult;
+use SwedbankPaymentPortal\Transaction\TransactionContainer;
 use SwedbankPaymentPortal\Transaction\TransactionRepositoryInterface;
 use SwedbankPaymentPortal\Options\ServiceOptions;
 
@@ -10,6 +12,7 @@ use SwedbankPaymentPortal\Options\ServiceOptions;
  */
 abstract class AbstractService
 {
+    private $TRANSACTION_TTL_IN_HOURS = 72; // 3 days.
     /**
      * @var TransactionRepositoryInterface
      */
@@ -71,5 +74,41 @@ abstract class AbstractService
             $this->serializer,
             get_class($this)
         );
+    }
+
+    /**
+     * @param TransactionContainer $transaction
+     * @return bool
+     */
+    protected function checkIfTransactionIsNotExpired(TransactionContainer $transaction)
+    {
+        if ($this->isTransactionExpired($transaction)) {
+            $merchantReference = $transaction->getKey();
+
+            $transaction->getCallback()->handleFinishedTransaction(
+                TransactionResult::failure(),
+                $transaction->getLastFrame()
+            );
+
+            $this->getTransactionRepository()->remove($merchantReference);
+
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * @param TransactionContainer $transaction
+     * @return bool
+     */
+    private function isTransactionExpired(TransactionContainer $transaction)
+    {
+        $now = new \DateTime();
+
+        $createdAt = $transaction->getCreatedAt();
+
+        return $createdAt &&
+            ($now->getTimestamp() - $createdAt->getTimestamp()) / 3600.0 > $this->TRANSACTION_TTL_IN_HOURS;
     }
 }
