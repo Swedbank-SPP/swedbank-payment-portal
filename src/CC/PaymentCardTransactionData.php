@@ -72,4 +72,14 @@ class PaymentCardTransactionData
         return $this->fulfillDate;
     }
 
+    public function toArray()
+    {
+        return [
+            'expiryDate'        => $this->expiryDate,
+            'pan'               => $this->pan,
+            'authorizationCode' => $this->authorizationCode,
+            'merchantReference' => $this->merchantReference,
+            'fulfillDate'       => $this->fulfillDate,
+        ];
+    }
 }

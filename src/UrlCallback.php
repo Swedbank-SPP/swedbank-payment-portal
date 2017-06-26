@@ -47,7 +47,10 @@ class UrlCallback implements CallbackInterface
         $httpClient->post(
             $this->url,
             [
-                'form_params' => ['status' => $transactionResult->id()]
+                'form_params' => [
+                    'status' => $transactionResult->id(),
+                    'card_data' => $paymentCardTransactionData ? json_encode($paymentCardTransactionData->toArray()) : ''
+                ]
             ]
         );
     }
