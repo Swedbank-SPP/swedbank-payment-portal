@@ -228,18 +228,25 @@ class SetExpressCheckoutResponse extends AbstractResponse
     /**
      * @return string
      * @throws \RuntimeException
+     * @param $live
      */
-    public function getCustomerRedirectUrl()
+    public function getCustomerRedirectUrl($live = true)
     {
         if (!$this->status == PurchaseStatus::accepted()) {
             throw new \RuntimeException("Cannot get Customer redirect URL for Purchase Response   status != 1");
         }
 
-        return sprintf(
-            "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=%s",
-            $this->getPayPalTxn()->getToken()
-        );
+        if($live) {
+            return sprintf(
+                 "https://www.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=%s",
+                 $this->getPayPalTxn()->getToken()
+            );
+        } else {
+             return sprintf(
+                 "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=%s",
+                 $this->getPayPalTxn()->getToken()
+            );
+        }
 
     }
-
 }
