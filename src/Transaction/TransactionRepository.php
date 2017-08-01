@@ -2,16 +2,14 @@
 
 namespace SwedbankPaymentPortal\Transaction;
 
+use Doctrine\Common\Cache\Cache;
 use Doctrine\Common\Cache\FilesystemCache;
-use SwedbankPaymentPortal\Transaction\TransactionRepositoryInterface;
 use SwedbankPaymentPortal\Serializer;
-use SwedbankPaymentPortal\Transaction\TransactionContainer;
-use SwedbankPaymentPortal\Transaction\TransactionFrame;
 
 class TransactionRepository implements TransactionRepositoryInterface
 {
     /**
-     * @var FilesystemCache
+     * @var Cache
      */
     protected $fileCache;
 
@@ -36,14 +34,29 @@ class TransactionRepository implements TransactionRepositoryInterface
      * @param Serializer $serializer
      * @param string     $prefix
      * @param int        $timeInterval Time interval in minutes after which purchase should be returned as unfinished.
-     * @param string     $dir
+     * @param string|Cache $dir  with this parameter you can also specify your own Cache object otherwise we'll use FilesystemCache
      */
     public function __construct(Serializer $serializer, $prefix = '', $timeInterval = 30, $dir = null)
     {
         $this->serializer        = $serializer;
         $this->KEY_LIST_CACHE_ID = "KEYS_$prefix";
         $this->timeInterval      = $timeInterval;
-        $this->fileCache         = new FilesystemCache($dir ? $dir : sys_get_temp_dir() . '/banklink');
+
+        switch (true) {
+            case $dir instanceof Cache:
+                $this->fileCache = $dir;
+                break;
+
+            case is_string($dir):
+            case null:
+                $this->fileCache = new FilesystemCache($dir ? $dir : sys_get_temp_dir() . '/banklink');
+                break;
+
+            default:
+                throw new \RuntimeException(
+                    "`dir` parameter must be a string or an object which implements Cache interface"
+                );
+        }
     }
 
     /**
