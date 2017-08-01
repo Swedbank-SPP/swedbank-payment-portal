@@ -270,10 +270,10 @@ class BankLinkService extends AbstractService
             $callback = $container->getCallback();
             $callback->handleFinishedTransaction($transactionResult, $transactionFrame);
             $this->getTransactionRepository()->remove($merchantReference);
-        };
-
-        $container->addFrame($transactionFrame);
-        $this->getTransactionRepository()->persist($container);
+        } else {
+            $container->addFrame($transactionFrame);
+            $this->getTransactionRepository()->persist($container);
+        }
 
         return $transactionResult;
     }
