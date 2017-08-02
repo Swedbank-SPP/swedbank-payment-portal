@@ -31,10 +31,10 @@ class TransactionRepository implements TransactionRepositoryInterface
     /**
      * TransactionRepository constructor.
      *
-     * @param Serializer $serializer
-     * @param string     $prefix
-     * @param int        $timeInterval Time interval in minutes after which purchase should be returned as unfinished.
-     * @param string|Cache $dir  with this parameter you can also specify your own Cache object otherwise we'll use FilesystemCache
+     * @param Serializer        $serializer
+     * @param string            $prefix
+     * @param int               $timeInterval Time interval in minutes after which purchase should be returned as unfinished.
+     * @param string|Cache|null $dir with this parameter you can also specify your own Cache object otherwise we'll use FilesystemCache
      */
     public function __construct(Serializer $serializer, $prefix = '', $timeInterval = 30, $dir = null)
     {
@@ -48,7 +48,7 @@ class TransactionRepository implements TransactionRepositoryInterface
                 break;
 
             case is_string($dir):
-            case null:
+            case is_null($dir):
                 $this->fileCache = new FilesystemCache($dir ? $dir : sys_get_temp_dir() . '/banklink');
                 break;
 
