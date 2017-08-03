@@ -54,7 +54,7 @@ class TransactionRepository implements TransactionRepositoryInterface
 
             default:
                 throw new \RuntimeException(
-                    "`dir` parameter must be a string or an object which implements Cache interface"
+                    "Parameter $dir must be NULL, a string or an object which implements Cache interface."
                 );
         }
     }
