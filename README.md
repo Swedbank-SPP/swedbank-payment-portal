@@ -458,7 +458,7 @@ $riskAction = new Transaction\Action(
         'Street address', // address line 1
         '', // address line 2
         'London', // City
-        'Unated States' // Country
+        'UK' // Country
         ), new Transaction\PersonalDetails(// Personal details
         'Name', // Required, Card holder name
         'Surname', // Required. Card holder surname
@@ -470,7 +470,7 @@ $riskAction = new Transaction\Action(
         'Street address', // address line 1
         '', // address line 2
         'City', // City
-        'Unated Kingdom', // Country
+        'UK', // Country
         'Zip0000' // Post code
         ), new Transaction\RiskDetails(
         '127.15.21.55', // Required. Card holder IP address
@@ -606,7 +606,7 @@ $riskAction = new Transaction\Action(
             'Street address', // address line 1
             '', // address line 2
             'London', // City
-            'Unated States' // Country
+            'UK' // Country
         ),
         new Transaction\PersonalDetails( // Personal details
             'Name', // Required, Card holder name
@@ -621,7 +621,7 @@ $riskAction = new Transaction\Action(
             'Street address', // address line 1
             '', // address line 2
             'City', // City
-            'Unated Kingdom', // Country
+            'UK', // Country
             'Zip0000' // Post code
         ),
 
