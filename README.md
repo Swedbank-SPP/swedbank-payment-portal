@@ -151,11 +151,11 @@ Test Card Number | Return Code | Description | Sample Message
 
 ### Test Data for 3-D Secure
 
-Any of the magic card numbers can be used while integrating 3-D Secure. The response will be determined first by the 3-D Secure configuration on your account, and then by the expiry date of the card number.
+Any of the magic card numbers can be used while integrating 3-D Secure. The response will be determined first by the 3-D Secure configuration on your account, and then by the expiry month of the test card number.
 
-In order to generate specific responses, please use the  card expiry dates shown below:
+In order to generate specific responses, please use the  card expiry **month** shown below:
 
-Code | Response
+Test card expiry  month | Test system response
 --- | ---
 01 | Card is enrolled
 02 | Card is not enrolled
@@ -536,7 +536,7 @@ if ($way == 'confirmed'){
   SwedbankPaymentPortal::init($options);  // <- library  initiation
   $spp = SwedbankPaymentPortal::getInstance();  // <- library usage
 
-  $rez = $spp->getPaymentCardHostedPagesGateway()->hpsQuery($orderId); 
+  $rez = $spp->getPaymentCardHostedPagesGateway()->handlePendingTransaction($orderId); 
   // now you can show user "thank you for your payment, but don't put flag 
   //flag need to put inside callback
   
@@ -690,7 +690,7 @@ if ($way == 'confirmed'){
   SwedbankPaymentPortal::init($options);  // <- library  initiation
   $spp = SwedbankPaymentPortal::getInstance();  // <- library usage
 
-  $rez = $spp->getPaymentCardHostedPagesGateway()->hpsQuery($orderId); 
+  $rez = $spp->getPaymentCardHostedPagesGateway()->handlePendingTransaction($orderId); 
   // now you can show user "thank you for your payment, but don't put flag 
   //what this payment is done. This is done in secretprocesor.php file
   
@@ -913,6 +913,78 @@ if ($way == 'confirmed'){
 } else { // cancelled
 	echo 'Payment cancelled';
 	// do some action for cancel logic
+}
+```
+# Debugging / logging xml
+
+To log xml needed to modify code.
+
+```php
+include 'swedbank_logger.php';
+```
+
+Add logger object to ServiceOptions
+
+```php
+$options = new ServiceOptions(
+      new CommunicationOptions(
+        'https://accreditation.datacash.com/Transaction/acq_a' //this is test environment 
+		// for production/live use this URL: https://mars.transaction.datacash.com/Transaction
+      ),
+   $auth, new Swedbank_Client_Logger()
+  );
+```
+
+**swedbank_logger.php**
+```php
+use SwedbankPaymentPortal\Logger\LoggerInterface;
+
+class Swedbank_Client_Logger implements LoggerInterface
+{
+    public function __construct()
+    {
+    }
+
+    /**
+     * @param string                                                                                                                                                                                                                                                                                                                                                 $requestXml
+     * @param string                                                                                                                                                                                                                                                                                                                                                 $responseXml
+     * @param object|\SwedbankPaymentPortal\BankLink\CommunicationEntity\HPSQueryRequest\HPSQueryRequest|\SwedbankPaymentPortal\BankLink\CommunicationEntity\PaymentAttemptRequest\PaymentAttemptRequest|\SwedbankPaymentPortal\BankLink\CommunicationEntity\PurchaseRequest\PurchaseRequest|\SwedbankPaymentPortal\BankLink\CommunicationEntity\TransactionQueryRequest\TransactionQueryRequest $requestObject
+     * @param object|\SwedbankPaymentPortal\BankLink\CommunicationEntity\PaymentAttemptResponse\PaymentAttemptResponse|\SwedbankPaymentPortal\BankLink\CommunicationEntity\PurchaseResponse\PurchaseResponse|\SwedbankPaymentPortal\BankLink\CommunicationEntity\TransactionQueryResponse\TransactionQueryResponse|\SwedbankPaymentPortal\SharedEntity\HPSQueryResponse\HPSQueryResponse         $responseObject
+     * @param \SwedbankPaymentPortal\SharedEntity\Type\TransportType                                                                                                                                                                                                                                                                                                        $type
+     */
+    public function logData(
+        $requestXml,
+        $responseXml,
+        $requestObject,
+        $responseObject,
+        \SwedbankPaymentPortal\SharedEntity\Type\TransportType $type
+    ) {
+
+        $requestType = $type->id();
+        $request = $this->prettyXml($requestXml);
+        $response = $responseXml;
+
+		file_put_contents(dirname(__FILE__) . '/../../../storage/logs/swedbank.log', "\n-----\n$requestType\n$request\n\n$response\n", FILE_APPEND | LOCK_EX);
+    }
+
+    /**
+     * Method formats given XML into pretty readable format
+     *
+     * @param $xml
+     *
+     * @return string
+     */
+    private function prettyXml($xml)
+    {
+        $doc = new DomDocument('1.0');
+        $doc->loadXML($xml);
+        $doc->preserveWhiteSpace = false;
+        $doc->formatOutput       = true;
+
+        $prettyXml = $doc->saveXML();
+
+        return $prettyXml;
+    }
 }
 ```
 
