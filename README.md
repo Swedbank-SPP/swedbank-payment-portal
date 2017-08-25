@@ -915,6 +915,128 @@ if ($way == 'confirmed'){
 	// do some action for cancel logic
 }
 ```
+
+# Paypal example
+
+Replace sppdemoshop.eu to your shop address.
+
+**paypal_setup.php**
+
+```php
+// include autoloader and library needed for paypal payment
+include dirname(__FILE__) . '/../SwedbankPaymentPortal/vendor/autoload.php';
+
+use SwedbankPaymentPortal\Options\CommunicationOptions;
+use SwedbankPaymentPortal\Options\ServiceOptions;
+use SwedbankPaymentPortal\SharedEntity\Authentication;
+use SwedbankPaymentPortal\SwedbankPaymentPortal;
+use SwedbankPaymentPortal\SharedEntity\Amount;
+
+use SwedbankPaymentPortal\PayPal\CommunicationEntity\ShippingAddress;
+use SwedbankPaymentPortal\PayPal\CommunicationEntity\SetExpressCheckoutRequest\Transaction;
+use SwedbankPaymentPortal\PayPal\CommunicationEntity\SetExpressCheckoutRequest\Transaction\TxnDetails;
+use SwedbankPaymentPortal\PayPal\CommunicationEntity\SetExpressCheckoutRequest\SetExpressCheckoutRequest;
+use SwedbankPaymentPortal\PayPal\Type\PayPalBool;
+
+
+include dirname(__FILE__) . '/callback.php';
+include dirname(__FILE__) . '/logger.php';
+
+$auth = new Authentication('*******', '*********'); // VtID and password
+// Generating unique merchant reference. To generate merchant reference 
+//please use your one logic. This is only example.
+$merchantReferenceId = 'ID235r' . strtotime('now');
+$purchaseAmount = '4.99'; // Euro and cents needs to be separated by dot.  
+
+$options = new ServiceOptions(
+        new CommunicationOptions(
+        'https://accreditation.datacash.com/Transaction/acq_a' //this is test environment 
+        // for production/live use this URL: https://mars.transaction.datacash.com/Transaction
+        ), $auth, new Swedbank_Client_Logger()
+);
+
+SwedbankPaymentPortal::init($options);  // <- library  initiation
+$spp = SwedbankPaymentPortal::getInstance();  // <- library usage
+
+$payPalTxn = new Transaction\PayPalTxn(
+        null,
+    'ABCQWH', // Custom
+    'PayPal test payment', //Description
+    'customer@customer.com', //Email
+    $merchantReference, // Invoice number
+    'LT', // Locale code
+    $purchaseAmount, // Max amount
+    PayPalBool::false(),// No Shipping
+    PayPalBool::false(), // Overide address
+    PayPalBool::false(), // Requere confirmed shipping
+    'http://sppdemoshop.eu/test/paypal_confirm.php?way=confirmed&order_id=' . $merchantReferenceId, //Return URL. See chapter “Success / Failure URL Handling” for more info
+    'http://sppdemoshop.eu/test/paypal_confirm.php?way=cancelled&order_id=' . $merchantReferenceId // error url
+);
+
+$txnDetails  = new TxnDetails(new Amount($purchaseAmount), $merchantReferenceId);
+$transaction = new Transaction($txnDetails, $payPalTxn);
+$request = new SetExpressCheckoutRequest($transaction, null);
+
+$response = $spp->getPayPalGateway()->initPayment(
+    $request,
+    new Swedbank_Ordering_Handler_PaymentCompletedCallback(
+        $merchantReferenceId
+    )
+);
+
+$url = $response->getCustomerRedirectUrl(false); // Getting redirect url. False - if test enviroment, true - if live enviroment
+
+header('Location: ' . $url); // redirecting card holder to card input form.
+
+```
+
+**paypal_confirm.php**
+
+```php
+include dirname(__FILE__).'/../SwedbankPaymentPortal/vendor/autoload.php';
+
+use SwedbankPaymentPortal\Options\CommunicationOptions;
+use SwedbankPaymentPortal\Options\ServiceOptions;
+use SwedbankPaymentPortal\SharedEntity\Authentication;
+use SwedbankPaymentPortal\SwedbankPaymentPortal;
+use SwedbankPaymentPortal\SharedEntity\Amount;
+use SwedbankPaymentPortal\PayPal\CommunicationEntity\ShippingAddress;
+use SwedbankPaymentPortal\PayPal\CommunicationEntity\SetExpressCheckoutRequest\Transaction;
+use SwedbankPaymentPortal\PayPal\CommunicationEntity\SetExpressCheckoutRequest\Transaction\TxnDetails;
+use SwedbankPaymentPortal\PayPal\CommunicationEntity\SetExpressCheckoutRequest\SetExpressCheckoutRequest;
+use SwedbankPaymentPortal\PayPal\Type\PayPalBool;
+
+include dirname(__FILE__) . '/callback.php';
+include dirname(__FILE__) . '/logger.php';
+
+
+$orderId = $_GET['order_id'];
+$way  = $_GET['way'];
+
+if ($way == 'confirmed'){
+  $auth = new Authentication('*********', '*********');
+  $options = new ServiceOptions(
+      new CommunicationOptions(
+        'https://accreditation.datacash.com/Transaction/acq_a' //this is test environment 
+		// for production/live use this URL: https://mars.transaction.datacash.com/Transaction
+      ),
+   $auth, new Swedbank_Client_Logger()
+  );
+  SwedbankPaymentPortal::init($options);  // <- library  initiation
+  $spp = SwedbankPaymentPortal::getInstance();  // <- library usage
+
+  $spp->getPayPalGateway()->handlePendingTransaction($orderId); 
+  // now you can show user "thank you for your payment, but don't put flag 
+  //flag need to put inside callback
+  
+  echo 'Thank you';
+} else { // cancelled
+	echo 'Payment cancelled';
+	// do some action for cancel logic
+}
+
+```
+
 # Debugging / logging xml
 
 To log xml needed to modify code.
