@@ -66,6 +66,16 @@ class PurchaseStatus extends AbstractStatus
     }
 
     /**
+     * Bank Card 3-D Secure Service: 3DS Expired Awaiting Authorization
+     *
+     * @return PurchaseStatus
+     */
+    final public static function ExpiredAwaitingAuthorization()
+    {
+        return self::get(184);
+    }
+
+    /**
      * VERes error response received
      *
      * This return code applies to the 3-D Secure system, when attempting to initiate the 3DS check on a card.
