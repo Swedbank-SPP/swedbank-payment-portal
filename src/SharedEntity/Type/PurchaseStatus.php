@@ -205,7 +205,6 @@ class PurchaseStatus extends AbstractStatus
         return self::get(2051);
     }
 
-
     /**
      * APG: A processing error occurred
      * @return $this
@@ -213,6 +212,132 @@ class PurchaseStatus extends AbstractStatus
     final public static function processingError()
     {
         return self::get(2052);
+    }
+
+    /**
+     * APG: Transaction has been redirected by APM
+     * @return $this
+     */
+    final public static function transactionBeingRedirected()
+    {
+        return self::get(2053);
+    }
+
+    /**
+     * APG: Transaction cancelled
+     * @return $this
+     */
+    final public static function transactionCancelled()
+    {
+        return self::get(2054);
+    }
+
+    /**
+     * APG: Transaction was rejected by the fraud gateway
+     * @return $this
+     */
+    final public static function transactionWasRejectedByTheFraudGateway()
+    {
+        return self::get(2055);
+    }
+
+    /**
+     * APG: Transaction sent for capture
+     * @return $this
+     */
+    final public static function transactionSentForCapture()
+    {
+        return self::get(2056);
+    }
+
+    /**
+     * APG: Transaction sent for refund
+     * @return $this
+     */
+    final public static function transactionSentForRefund()
+    {
+        return self::get(2057);
+    }
+
+    /**
+     * APG: Transaction refunded
+     * @return $this
+     */
+    final public static function transactionRefunded()
+    {
+        return self::get(2058);
+    }
+
+    /**
+     * APG: Transaction cannot be found on APM gateway
+     * @return $this
+     */
+    final public static function transactionCannotBeFoundOnAPMGateway()
+    {
+        return self::get(2059);
+    }
+
+    /**
+     * APG: Requested information supplied
+     * @return $this
+     */
+    final public static function requestedInformationSupplied()
+    {
+        return self::get(2060);
+    }
+
+    /**
+     * APG: Unable to parse APG response
+     * @return $this
+     */
+    final public static function unableToParseApgResponse()
+    {
+        return self::get(2061);
+    }
+
+    /**
+     * APG: Comms error
+     * @return $this
+     */
+    final public static function commsError()
+    {
+        return self::get(2062);
+    }
+
+    /**
+     * APG: No connection tickets available
+     * @return $this
+     */
+    final public static function noConnectionTicketsAvailable()
+    {
+        return self::get(2063);
+    }
+
+    /**
+     * APG: vTid not subscribed
+     * @return $this
+     */
+    final public static function vTidNotSubscribed()
+    {
+        return self::get(2064);
+    }
+
+    /**
+     * APG: Unknown APG DPG Reference ID provided
+     * @return $this
+     */
+    final public static function unknownApgDpgReferenceIdProvided()
+    {
+        return self::get(2065);
+    }
+
+    /**
+     * APG: Missing mandatory data
+     * @return $this
+     */
+    final public static function missingMandatoryData()
+    {
+        return self::get(2066);
     }
 
     /**
