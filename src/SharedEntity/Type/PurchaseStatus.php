@@ -45,6 +45,16 @@ class PurchaseStatus extends AbstractStatus
     }
 
     /**
+     * Invalid Merchant reference
+     *
+     * @return PurchaseStatus
+     */
+    final public static function invalidMerchantReference()
+    {
+        return self::get(22);
+    }
+
+    /**
      * Reference already in use
      *
      * @return PurchaseStatus
