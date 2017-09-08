@@ -111,6 +111,15 @@ class PurchaseStatus extends AbstractStatus
         return self::get(560);
     }
 
+    /**
+     * PayPal: Customer login pending
+     * @return $this
+     */
+    final public static function customerLoginPending()
+    {
+        return self::get(571);
+    }
+
 
     /**
      * InappropriateData
