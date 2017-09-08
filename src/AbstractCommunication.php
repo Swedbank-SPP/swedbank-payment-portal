@@ -11,6 +11,8 @@ use SwedbankPaymentPortal\CC\Type\ThreeDAuthorizationStatus;
 use SwedbankPaymentPortal\Logger\LoggerInterface;
 use SwedbankPaymentPortal\Logger\NullLogger;
 use SwedbankPaymentPortal\Options\CommunicationOptions;
+use SwedbankPaymentPortal\PayPal\CommunicationEntity\DoExpressCheckoutPaymentResponse\DoExpressCheckoutPaymentResponse;
+use SwedbankPaymentPortal\PayPal\CommunicationEntity\GetExpressCheckoutDetailsResponse\GetExpressCheckoutDetailsResponse;
 use SwedbankPaymentPortal\SharedEntity\AbstractResponse;
 use SwedbankPaymentPortal\SharedEntity\Type\ResponseStatus;
 use SwedbankPaymentPortal\SharedEntity\Type\TransportType;
@@ -127,6 +129,9 @@ class AbstractCommunication
 
                     // * do not throw any error exceptions on AuthorizationResponse
                     $skipIf = ($response instanceof AuthorizationResponse);
+
+                    // * do not throw on PayPal communication
+                    $skipIf = $skipIf || ($response instanceof GetExpressCheckoutDetailsResponse) || ($response instanceof DoExpressCheckoutPaymentResponse);
 
                     $skipIf = $skipIf || ($response instanceof ThreeDSecureAuthorizationResponse &&
                             (
