@@ -20,7 +20,7 @@ class SetupRequestTest extends AbstractCommunicationEntityTest
     {
         $authentication = new Authentication('********', '********');
         $transaction = new Transaction(
-            new Transaction\TxnDetails(new Amount(1), 'SPPtestHCC_1462531357'),
+            new Transaction\TxnDetails(new Amount(1), 'SPPTESTHCC_1462531357'),
             new Transaction\HPSTxn(
                 'http://www.example.com/expiry.html',
                 'https://www.sppshop.eu/spptest/hcc_request.php',

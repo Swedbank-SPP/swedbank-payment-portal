@@ -6,7 +6,7 @@
   </Authentication>
   <Transaction>
     <TxnDetails>
-      <merchantreference>SPPtestHCC_1462531357</merchantreference>
+      <merchantreference>SPPTESTHCC_1462531357</merchantreference>
       <amount currency="EUR">1</amount>
     </TxnDetails>
     <HpsTxn>

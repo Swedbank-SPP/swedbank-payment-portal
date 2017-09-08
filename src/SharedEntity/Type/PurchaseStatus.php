@@ -45,8 +45,12 @@ class PurchaseStatus extends AbstractStatus
     }
 
     /**
-     * Invalid Merchant reference
-     *
+     * Invalid Merchant reference:
+     * Rules:
+     * min 6 characters
+     * max 30 characters
+     * Allowed characters (including the space): ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 _-/
+     * Shorter numbers should be padded out with leading zeros to fit these length restrictions, if required.
      * @return PurchaseStatus
      */
     final public static function invalidMerchantReference()

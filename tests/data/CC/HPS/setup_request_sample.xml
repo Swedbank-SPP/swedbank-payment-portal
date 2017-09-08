@@ -48,7 +48,7 @@
           </CustomerDetails>
         </Action>
       </Risk>
-      <merchantreference>SPPtestHPS_1463064393</merchantreference>
+      <merchantreference>SPPTESTHPS_1463064393</merchantreference>
       <ThreeDSecure>
         <purchase_datetime>20151211 16:01:02</purchase_datetime>
         <verify>yes</verify>

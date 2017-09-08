@@ -3,6 +3,7 @@
 namespace SwedbankPaymentPortal\CC\HPSCommunicationEntity\SetupRequest\Transaction;
 
 use Jms\Serializer\Annotation;
+use SwedbankPaymentPortal\CC\Validator;
 use SwedbankPaymentPortal\SharedEntity\Amount;
 
 /**
@@ -91,7 +92,7 @@ class TxnDetails
         $captureMethod = self::CAPTURE_METHOD_DEFAULT
     ) {
         $this->risk = new Risk($action);
-        $this->merchantReference = $merchantReference;
+        $this->setMerchantReference($merchantReference);
         $this->amount = $amount;
         $this->threeDSecure = $threeDSecure;
         $this->captureMethod = $captureMethod;
@@ -131,9 +132,12 @@ class TxnDetails
      * MerchantReference setter.
      *
      * @param string $merchantReference
+     * @throws \RuntimeException
      */
     public function setMerchantReference($merchantReference)
     {
+        Validator::merchantReferenceMustBeValid($merchantReference);
+
         $this->merchantReference = $merchantReference;
     }
 

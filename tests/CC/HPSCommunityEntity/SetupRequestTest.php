@@ -61,7 +61,7 @@ class SetupRequestTest extends AbstractCommunicationEntityTest
         );
         $txnDetails = new TxnDetails(
             $action,
-            'SPPtestHPS_1463064393',
+            'SPPTESTHPS_1463064393',
             new Amount(1),
             new ThreeDSecure(
                 'Invoice nr: Demoshop_1211160054',

@@ -3,6 +3,7 @@
 namespace SwedbankPaymentPortal\CC\HCCCommunicationEntity\SetupRequest\Transaction;
 
 use JMS\Serializer\Annotation;
+use SwedbankPaymentPortal\CC\Validator;
 use SwedbankPaymentPortal\SharedEntity\Amount;
 
 /**
@@ -47,7 +48,7 @@ class TxnDetails
     public function __construct(Amount $amount, $merchantReference)
     {
         $this->amount = $amount;
-        $this->merchantReference = $merchantReference;
+        $this->setMerchantReference($merchantReference);
     }
 
     /**
@@ -64,9 +65,12 @@ class TxnDetails
      * MerchantReference setter.
      *
      * @param string $merchantReference
+     * @throws \RuntimeException
      */
     public function setMerchantReference($merchantReference)
     {
+        Validator::merchantReferenceMustBeValid($merchantReference);
+
         $this->merchantReference = $merchantReference;
     }
 
