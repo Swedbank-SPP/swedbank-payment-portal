@@ -126,6 +126,15 @@ class PurchaseStatus extends AbstractStatus
     }
 
     /**
+     * PayPal: Invalid reference
+     * @return $this
+     */
+    final public static function payPalInvalidReference()
+    {
+        return self::get(565);
+    }
+
+    /**
      * PayPal: Customer login pending
      * @return $this
      */
