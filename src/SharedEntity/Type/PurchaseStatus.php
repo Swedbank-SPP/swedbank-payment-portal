@@ -403,7 +403,7 @@ class PurchaseStatus extends AbstractStatus
      */
     public function deserialize(XmlDeserializationVisitor $visitor, $data, Context $context)
     {
-        $this->assignId((int)$data);
+        $this->assignId((int)$data, /*allow unknown values*/true);
     }
 
     /**

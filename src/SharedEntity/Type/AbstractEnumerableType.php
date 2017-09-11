@@ -150,15 +150,20 @@ abstract class AbstractEnumerableType
      * Assigns id if it exists.
      *
      * @param mixed $id
+     * @param bool  $allowUnknownValues (default: false)
      */
-    protected function assignId($id)
+    protected function assignId($id, $allowUnknownValues = false)
     {
-        $enumObject = $this->fromId($id);
+        if ($allowUnknownValues) {
+            $this->id = $id;
+        } else {
+            $enumObject = $this->fromId($id);
 
-        if (!$enumObject) {
-            throw new \RuntimeException("Unknown value '{$id}' was given for enum " . get_class($this));
+            if (!$enumObject) {
+                throw new \RuntimeException("Unknown value '{$id}' was given for enum " . get_class($this));
+            }
+
+            $this->id = $enumObject->id();
         }
-
-        $this->id = $enumObject->id();
     }
 }
