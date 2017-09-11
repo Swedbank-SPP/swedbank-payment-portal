@@ -123,7 +123,7 @@ class PayPalService extends AbstractService
             $transactionFrame->setResponse($response);
 
             $transactionResult = TransactionResult::failure();
-            if ($response->getPayPalTxn()->getPaymentStatus() == PaymentStatus::completed()) {
+            if ($response->getPayPalTxn() && $response->getPayPalTxn()->getPaymentStatus() == PaymentStatus::completed()) {
                 $transactionResult = TransactionResult::success();
             }
 
