@@ -17,7 +17,7 @@
         "symfony/dependency-injection": "^3.0",
         "symfony/config": "^3.0",
         "jms/serializer": "^1.1",
-        "guzzlehttp/guzzle": "^6.2",
+        "guzzlehttp/guzzle": "^5.0|^6.0",
         "doctrine/cache": "^1.6"
     },
     "require-dev": {
