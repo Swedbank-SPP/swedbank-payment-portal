@@ -25,7 +25,7 @@ class Validator
             );
         }
 
-        if (!preg_match('/^[ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 _\-\/]+$/', $merchantReference)) {
+        if (!preg_match('/^[ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 _\-\/]+$/i', $merchantReference)) {
             throw new \RuntimeException(
                 "Payment Cards merchantReference must contain only characters: ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 _-/. Given: {$merchantReference}"
             );
