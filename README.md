@@ -279,6 +279,9 @@ $spp->getBankLinkGateway()->initPayment(
 UrlCallback will call the given url using HTTP POST operation, with these POST fields:
 “status” one of these: SUCCESS or FAIL or UNFINISHED.
 
+**Security note:**
+Thsi link should be secret and not accessable from outside. To improve security you need to add IP filtration for CalbackURL. The only IP allowed to call this URL should be 127.0.0.1
+
 # E-Receipt for Payment Card transactions
 
 After payment card transaction completion the third argument of “handleFinishedTransaction” method will be set. Third argument will contain object of PaymentCardTransactionData.
