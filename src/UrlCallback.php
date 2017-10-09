@@ -4,6 +4,7 @@ namespace SwedbankPaymentPortal;
 
 
 use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
 use SwedbankPaymentPortal\CC\PaymentCardTransactionData;
 use SwedbankPaymentPortal\SharedEntity\Type\TransactionResult;
 use SwedbankPaymentPortal\Transaction\TransactionFrame;
@@ -44,15 +45,20 @@ class UrlCallback implements CallbackInterface
         PaymentCardTransactionData $paymentCardTransactionData = null
     ) {
         $httpClient = new Client();
-        $httpClient->post(
-            $this->url,
-            [
-                'form_params' => [
-                    'status' => $transactionResult->id(),
-                    'card_data' => $paymentCardTransactionData ? json_encode($paymentCardTransactionData->toArray()) : ''
-                ]
-            ]
-        );
+
+        if (version_compare(ClientInterface::VERSION, '6.0.0') >= 0) {
+            $postDataParam = 'form_params';
+        } else {
+            $postDataParam = 'body';
+        }
+
+        $params                 = [];
+        $params[$postDataParam] = [
+            'status'    => $transactionResult->id(),
+            'card_data' => $paymentCardTransactionData ? json_encode($paymentCardTransactionData->toArray()) : ''
+        ];
+
+        $httpClient->post($this->url, $params);
     }
 
     public function serialize()
