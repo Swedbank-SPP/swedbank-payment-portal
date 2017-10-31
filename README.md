@@ -340,8 +340,7 @@ $purchaseRequest = (new PurchaseBuilder())
 
     $response = $spp->getBankLinkGateway()->initPayment(
         $purchaseRequest,
-        new PaymentCompletedCallback(
-            $orderId,
+        new Swedbank_Ordering_Handler_PaymentCompletedCallback(
             $merchantReferenceId
         )
     );
