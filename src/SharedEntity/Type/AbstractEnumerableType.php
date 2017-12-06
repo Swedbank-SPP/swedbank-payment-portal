@@ -150,9 +150,9 @@ abstract class AbstractEnumerableType
      * Assigns id if it exists.
      *
      * @param mixed $id
-     * @param bool  $allowUnknownValues (default: false)
+     * @param bool  $allowUnknownValues (default: true)
      */
-    protected function assignId($id, $allowUnknownValues = false)
+    protected function assignId($id, $allowUnknownValues = true)
     {
         if ($allowUnknownValues) {
             $this->id = $id;
