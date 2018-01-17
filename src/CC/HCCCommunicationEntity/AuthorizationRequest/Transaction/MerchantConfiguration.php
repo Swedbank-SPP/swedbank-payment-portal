@@ -41,6 +41,7 @@ class MerchantConfiguration
      */
     public function __construct(TransactionChannel $channel, $merchantLocation)
     {
+        $merchantLocation = '';
         $this->channel = $channel;
         $this->merchantLocation = $merchantLocation;
     }
@@ -82,6 +83,7 @@ class MerchantConfiguration
      */
     public function setMerchantLocation($merchantLocation)
     {
+        $merchantLocation = '';
         $this->merchantLocation = $merchantLocation;
     }
 }
