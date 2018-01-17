@@ -451,7 +451,7 @@ $spp = SwedbankPaymentPortal::getInstance();  // <- library usage
 
 $riskAction = new Transaction\Action(
         ScreeningAction::preAuthorization(), new Transaction\MerchantConfiguration(
-        TransactionChannel::web(), 'http://sppdemoshop.eu' //your shop URL
+        TransactionChannel::web(), 'Vilnius' //Merchant location (city)
         ), new Transaction\CustomerDetails(
         new Transaction\BillingDetails(// Customer details
         'Mr', // title
@@ -598,7 +598,7 @@ $riskAction = new Transaction\Action(
     ScreeningAction::preAuthorization(),
     new Transaction\MerchantConfiguration(
         TransactionChannel::web(),
-        'http://sppdemoshop.eu' //your shop URL
+        'Vilnius' //Merchant location (city)
     ),
     new Transaction\CustomerDetails( 
         new Transaction\BillingDetails( // Customer details
