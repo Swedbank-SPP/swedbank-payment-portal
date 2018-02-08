@@ -126,7 +126,7 @@ class BankLinkService extends AbstractService
     public function handlePendingTransaction($merchantReferenceId)
     {
         $purchaseResponse = $this->getFirstTransactionFrame($merchantReferenceId);
-
+        
         return $purchaseResponse ? $this->handlePendingUnfinishedResponse($purchaseResponse) : null;
     }
 
@@ -266,7 +266,7 @@ class BankLinkService extends AbstractService
 
         $transactionResult = $this->getTransactionResultFromQueryResponse($response);
 
-        if ($transactionResult) {
+        if ($transactionResult && $transactionResult != TransactionResult::unfinished()) {
             $callback = $container->getCallback();
             $callback->handleFinishedTransaction($transactionResult, $transactionFrame);
             $this->getTransactionRepository()->remove($merchantReference);
@@ -310,6 +310,7 @@ class BankLinkService extends AbstractService
      */
     private function getTransactionResultFromQueryResponse(TransactionQueryResponse $response)
     {
+        
         switch ($response->getApmTxn()->getPurchase()->getStatus()) {
             case ResponseStatus::accepted():
                 return TransactionResult::success();
@@ -324,7 +325,11 @@ class BankLinkService extends AbstractService
                 return TransactionResult::failure();
 
             case ResponseStatus::pending():
+                return TransactionResult::unfinished();
+                
             case ResponseStatus::requiresInvestigation():
+                return TransactionResult::requiresInvestigation();
+                
             case ResponseStatus::redirect():
             default:
                 return null;

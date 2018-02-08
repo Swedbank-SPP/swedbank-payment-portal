@@ -36,4 +36,14 @@ class TransactionResult extends AbstractEnumerableType
     {
         return self::get('UNFINISHED');
     }
+    
+    /**
+     * Requires Investigation transaction.
+     *
+     * @return TransactionResult
+     */
+    final public static function requiresInvestigation()
+    {
+        return self::get('REQUIRESINVESTIGATION');
+    }
 }
