@@ -32,15 +32,19 @@ services:
     pg.cc.hcc_service:
         class: SwedbankPaymentPortal\CC\HCCService\HCCService
         arguments: ["%service_options%", "@pg.cc.hcc_communication", "@pg.serializer"]
+        public: true
 
     pg.cc.hps_service:
         class: SwedbankPaymentPortal\CC\HPSService\HPSService
         arguments: ["%service_options%", "@pg.cc.hps_communication", "@pg.serializer"]
+        public: true
 
     pg.paypal_service:
         class: SwedbankPaymentPortal\PayPal\PayPalService
         arguments: ["%service_options%", "@pg.paypal.communication", "@pg.serializer"]
+        public: true
 
     pg.banklink_service:
         class: SwedbankPaymentPortal\BankLink\BankLinkService
         arguments: ["%service_options%", "@pg.banklink.communication", "@pg.serializer"]
+        public: true
