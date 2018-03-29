@@ -1,17 +1,17 @@
 <?php
 
-namespace SwedbankPaymentPortal\SharedEntity\HPSQueryRequest;
+namespace SwedbankPaymentPortal\SharedEntity\QueryRequest;
 
 use JMS\Serializer\Annotation;
 use SwedbankPaymentPortal\SharedEntity\Authentication;
 
 /**
- * Class HPSQueryRequest.
+ * Class QueryRequest.
  *
  * @Annotation\XmlRoot("Request")
  * @Annotation\AccessType("public_method")
  */
-class HPSQueryRequest
+class QueryRequest
 {
     /**
      * The container for Gateway authentication.
@@ -29,12 +29,12 @@ class HPSQueryRequest
      * @var Transaction
      *
      * @Annotation\SerializedName("Transaction")
-     * @Annotation\Type("SwedbankPaymentPortal\SharedEntity\HPSQueryRequest\Transaction")
+     * @Annotation\Type("SwedbankPaymentPortal\SharedEntity\QueryRequest\Transaction")
      */
     private $transaction;
 
     /**
-     * HPSQueryRequest constructor.
+     * QueryRequest constructor.
      *
      * @param Authentication $authentication
      * @param Transaction    $transaction

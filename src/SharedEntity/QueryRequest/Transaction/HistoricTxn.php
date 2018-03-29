@@ -1,16 +1,19 @@
 <?php
 
-namespace SwedbankPaymentPortal\SharedEntity\HPSQueryRequest\Transaction;
+namespace SwedbankPaymentPortal\SharedEntity\QueryRequest\Transaction;
 
 use JMS\Serializer\Annotation;
+use SwedbankPaymentPortal\SharedEntity\QueryRequest\Transaction\Reference;
 
 /**
- * Class HPSQueryRequest.
+ * Class QueryRequest.
  *
  * @Annotation\AccessType("public_method")
  */
 class HistoricTxn
 {
+    
+    
     /**
      * The transaction type. The value query should be sent in this field
      *
@@ -23,13 +26,12 @@ class HistoricTxn
     private $method = 'query';
 
     /**
-     * A 16 digit unique identifier for the transaction.
-     * This reference will be used when submitting QUERY transactions to the Payment Gateway.
+     * The container for Gateway authentication.
      *
-     * @var string
+     * @var Reference
      *
-     * @Annotation\Type("string")
-     * @Annotation\XmlElement(cdata=false)
+     * @Annotation\SerializedName("reference")
+     * @Annotation\Type("SwedbankPaymentPortal\SharedEntity\QueryRequest\Transaction\Reference")
      */
     private $reference;
 
@@ -38,7 +40,7 @@ class HistoricTxn
      *
      * @param string $reference
      */
-    public function __construct($reference)
+    public function __construct(Reference $reference)
     {
         $this->reference = $reference;
     }
@@ -60,6 +62,7 @@ class HistoricTxn
      */
     public function setReference($reference)
     {
-        $this->reference = $reference;
+        $this->reference = $references;
     }
+    
 }

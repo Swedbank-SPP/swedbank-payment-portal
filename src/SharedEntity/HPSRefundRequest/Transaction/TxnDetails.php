@@ -1,65 +1,54 @@
 <?php
 
-namespace SwedbankPaymentPortal\SharedEntity\HPSQueryRequest\Transaction;
+namespace SwedbankPaymentPortal\SharedEntity\HPSRefundRequest\Transaction;
 
 use JMS\Serializer\Annotation;
 
 /**
- * Class HPSQueryRequest.
+ * Class HPSRefundRequest.
  *
  * @Annotation\AccessType("public_method")
  */
-class HistoricTxn
+class TxnDetails
 {
-    /**
-     * The transaction type. The value query should be sent in this field
-     *
-     * @var string
-     *
-     * @Annotation\Type("string")
-     * @Annotation\AccessType("reflection")
-     * @Annotation\XmlElement(cdata=false)
-     */
-    private $method = 'query';
 
     /**
-     * A 16 digit unique identifier for the transaction.
-     * This reference will be used when submitting QUERY transactions to the Payment Gateway.
+     * Amound
      *
      * @var string
      *
      * @Annotation\Type("string")
      * @Annotation\XmlElement(cdata=false)
      */
-    private $reference;
+    private $amount;
 
     /**
-     * HistoricTxn constructor.
+     * TxnDetails constructor.
      *
-     * @param string $reference
+     * @param string $amount
      */
-    public function __construct($reference)
+    public function __construct($amount)
     {
-        $this->reference = $reference;
+        $this->amount = $amount;
     }
 
     /**
-     * Reference getter.
+     * Amount getter.
      *
      * @return string
      */
-    public function getReference()
+    public function getAmount()
     {
-        return $this->reference;
+        return $this->amount;
     }
 
     /**
-     * Reference setter.
+     * Amount setter.
      *
-     * @param string $reference
+     * @param string $amount
      */
-    public function setReference($reference)
+    public function setAmount($amount)
     {
-        $this->reference = $reference;
+        $this->amount = $amount;
     }
 }

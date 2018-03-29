@@ -1,17 +1,17 @@
 <?php
 
-namespace SwedbankPaymentPortal\CC\HPSCommunicationEntity\HPSQueryRequest;
+namespace SwedbankPaymentPortal\CC\HPSCommunicationEntity\QueryRequest;
 
-use SwedbankPaymentPortal\SharedEntity\HPSQueryRequest\HPSQueryRequest as ParentHpsQueryRequest;
+use SwedbankPaymentPortal\SharedEntity\QueryRequest\QueryRequest as ParentQueryRequest;
 use JMS\Serializer\Annotation;
 
 /**
- * Class HPSQueryRequest.
+ * Class QueryRequest.
  *
  * @Annotation\XmlRoot("Request")
  * @Annotation\AccessType("public_method")
  */
-class HPSQueryRequest extends ParentHpsQueryRequest
+class QueryRequest extends ParentQueryRequest
 {
     /**
      * API version used.

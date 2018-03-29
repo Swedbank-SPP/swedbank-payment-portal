@@ -89,23 +89,30 @@ class AbstractCommunication
      * @param string        $responseClass
      * @param string        $endpoint
      * @param TransportType $type
+     * @param boolen $returnArray
      *
      * @return AbstractResponse
      */
-    protected function sendDataToNetwork($request, $responseClass, $endpoint, TransportType $type)
-    {
+    protected function sendDataToNetwork($request, $responseClass, $endpoint, TransportType $type, $returnArray = false)
+    {        
         $requestXml = $this->serializer->getXml($request);
-
+        
         $responseObject = $this->network->sendRequest($endpoint, $requestXml);
-
+        
         if ($responseObject->getStatusCode() !== 200) {
             throw new \RuntimeException('Got not 200 response.(status code: ' . $responseObject->getStatusCode() . ')');
         }
 
         $rawResponse = (string)$responseObject->getBody();
-
-        $response = $this->serializer->getObject($rawResponse, $responseClass);
-
+        
+        if($returnArray){
+            $xml = simplexml_load_string( $rawResponse , null , LIBXML_NOCDATA ); 
+            $json = json_encode($xml); 
+            return json_decode($json,TRUE);
+        } else {
+            $response = $this->serializer->getObject($rawResponse, $responseClass);
+        }
+        
         $this->logger->logData(
             $this->dataCleanup->cleanUpRequestXml($requestXml),
             $rawResponse,

@@ -1,17 +1,17 @@
 <?php
 
-namespace SwedbankPaymentPortal\SharedEntity\HPSQueryRequest;
+namespace SwedbankPaymentPortal\SharedEntity\HPSCancelRequest;
 
 use JMS\Serializer\Annotation;
 use SwedbankPaymentPortal\SharedEntity\Authentication;
 
 /**
- * Class HPSQueryRequest.
+ * Class HPSCancelRequest.
  *
  * @Annotation\XmlRoot("Request")
  * @Annotation\AccessType("public_method")
  */
-class HPSQueryRequest
+class HPSCancelRequest
 {
     /**
      * The container for Gateway authentication.
@@ -29,12 +29,12 @@ class HPSQueryRequest
      * @var Transaction
      *
      * @Annotation\SerializedName("Transaction")
-     * @Annotation\Type("SwedbankPaymentPortal\SharedEntity\HPSQueryRequest\Transaction")
+     * @Annotation\Type("SwedbankPaymentPortal\SharedEntity\HPSCancelRequest\Transaction")
      */
     private $transaction;
 
     /**
-     * HPSQueryRequest constructor.
+     * HPSCancelRequest constructor.
      *
      * @param Authentication $authentication
      * @param Transaction    $transaction

@@ -10,14 +10,12 @@ Usually Swedbank Payment Portal integration is done using technical specificatio
 This library supports Swedbank payment types:
 
 + Cards integration type HPS;
-+ Cards integration type HCC (with 3D-secure);
-+ Cards integration type HCC (without 3D-secure);
 + Banklinks;
 + PayPal Express Checkout;
 
 ## Requirements
 
-Minimum PHP version required 5.4 and above. 
+Minimum PHP version required 7.1 and above. 
 
 ## Installation Instruction
 
@@ -26,7 +24,7 @@ Minimum PHP version required 5.4 and above.
 This is recommended way of installation. Add dependency in your `composer.json`:
 ```json
 "require": {
-    "swedbank-spp/swedbank-payment-portal": "^0.8"
+    "swedbank-spp/swedbank-payment-portal": "^0.9"
 }
 ```
 and rum "composer update" in command prompt or shell.
@@ -41,7 +39,7 @@ Alternative you can execute "composer require swedbank-spp/swedbank-payment-port
 + Open "composer.json" and replace "require": {} with: 
 ```json
 "require": {
-    "swedbank-spp/swedbank-payment-portal": "^0.8"
+    "swedbank-spp/swedbank-payment-portal": "^0.9"
  }
 ```
 + Run command: php composer.phar update  (after success "vendor" folder will be created)
@@ -92,10 +90,6 @@ function someControllerAction() {  // this method must be called whenever Notifi
 Payment Card HPS integration is the same as Banklink.
 
 ![alt tag](https://github.com/Swedbank-SPP/swedbank-payment-portal/raw/master/ignore/diagram_5.png)
-
-### Payment Card (HCC) integration
-
-![alt tag](https://github.com/Swedbank-SPP/swedbank-payment-portal/raw/master/ignore/diagram_6.png)
 
 ### PayPal integration (Express Checkout)
 
@@ -195,7 +189,6 @@ Example:
 $paypal   = $spp->getPayPalGateway();
 $banklink = $spp->getBankLinkGateway();
 $hps      = $spp->getPaymentCardHostedPagesGateway();
-$hcc      = $spp->getPaymentCardHostedCardCaptureGateway();
 ```
 
 Whatever service you’ll retrieve all services contains a method “initPayment” which is a main payment initialization point.
@@ -222,7 +215,6 @@ Swedbank Payment Portal library is using additional server to server verificatio
 $spp->getBankLinkGateway()->handlePendingTransaction($orderId);
  $spp->getPayPalGateway()->handlePendingTransaction($orderId);
  $spp->getPaymentCardHostedPagesGateway()->hpsQuery($orderId);
- $spp->getPaymentCardHostedCardCaptureGateway()->hccQuery($orderId);
 ```
 (please look at sequence diagrams above to see what library methods must be called on each step)
 
@@ -1111,4 +1103,90 @@ class Swedbank_Client_Logger implements LoggerInterface
     }
 }
 ```
+
+# Query card payment
+
+**query_example.php**
+```php
+
+namespace SwedbankPaymentPortal;
+// in autoloader and library needed for HPS payment
+include dirname(__FILE__).'/vendor/autoload.php'; 
+
+use SwedbankPaymentPortal\Options\CommunicationOptions;
+use SwedbankPaymentPortal\Options\ServiceOptions;
+use SwedbankPaymentPortal\SharedEntity\Authentication;
+use SwedbankPaymentPortal\SwedbankPaymentPortal;
+
+
+$auth = new Authentication('xxxxxxxxxx','xxxxxxxxxx'); // VtID and password
+
+//Merchant referance was used for payment
+$merchantReferenceId = 'XXXXXXXXXXX'; 
+
+$options = new ServiceOptions(
+   new CommunicationOptions(
+       'https://accreditation.datacash.com/Transaction/acq_a' //this is test environment 
+   	// for production/live use this URL: https://mars.transaction.datacash.com/Transaction
+   ),
+  $auth
+);
+
+SwedbankPaymentPortal::init($options);  // <- library  initiation
+$spp = SwedbankPaymentPortal::getInstance();  // <- library usage
+
+$response = $spp->getPaymentCardHostedPagesGateway()->query($merchantReferenceId);
+
+//var_dump($response);
+$response = $spp->getPaymentCardHostedPagesGateway()->hpsCancel($response['QueryTxnResult']['datacash_reference']);
+
+//$response = $spp->getPaymentCardHostedPagesGateway()->hpsRefund($response['QueryTxnResult']['datacash_reference'], '3.23');
+
+
+```
+
+# Cancel or Refund card payment
+
+**cancel_example.php**
+```php
+
+namespace SwedbankPaymentPortal;
+// in autoloader and library needed for HPS payment
+include dirname(__FILE__).'/vendor/autoload.php'; 
+
+use SwedbankPaymentPortal\Options\CommunicationOptions;
+use SwedbankPaymentPortal\Options\ServiceOptions;
+use SwedbankPaymentPortal\SharedEntity\Authentication;
+use SwedbankPaymentPortal\SwedbankPaymentPortal;
+
+
+$auth = new Authentication('xxxxxxxxxx','xxxxxxxxxx'); // VtID and password
+
+//Merchant referance was used for payment
+$merchantReferenceId = 'XXXXXXXXXXX'; 
+
+$options = new ServiceOptions(
+   new CommunicationOptions(
+       'https://accreditation.datacash.com/Transaction/acq_a' //this is test environment 
+   	// for production/live use this URL: https://mars.transaction.datacash.com/Transaction
+   ),
+  $auth
+);
+
+SwedbankPaymentPortal::init($options);  // <- library  initiation
+$spp = SwedbankPaymentPortal::getInstance();  // <- library usage
+
+$response = $spp->getPaymentCardHostedPagesGateway()->query($merchantReferenceId);
+
+//var_dump($response);
+$response = $spp->getPaymentCardHostedPagesGateway()->hpsCancel($response['QueryTxnResult']['datacash_reference']);
+//check if cancell was successful if not do refund
+
+//$response = $spp->getPaymentCardHostedPagesGateway()->hpsRefund($response['QueryTxnResult']['datacash_reference'], '3.23');
+
+
+```
+
+
+
 

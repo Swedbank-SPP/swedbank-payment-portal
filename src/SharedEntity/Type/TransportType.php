@@ -28,6 +28,26 @@ class TransportType extends AbstractEnumerableType
     }
     
     /**
+     * HPS cancel (HPSCancelRequest and HPSCancelResponse).
+     *
+     * @return TransportType
+     */
+    final public static function hpsCancel()
+    {
+        return self::get('cancel');
+    }
+    
+    /**
+     * HPS refund (HPSRefundRequest and HPSRefundResponse).
+     *
+     * @return TransportType
+     */
+    final public static function hpsRefund()
+    {
+        return self::get('refund');
+    }
+    
+    /**
      * Payment (PaymentAttemptRequest and PaymentAttemptResponse).
      *
      * @return TransportType

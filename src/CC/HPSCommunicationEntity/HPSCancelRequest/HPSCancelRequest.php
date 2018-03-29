@@ -1,17 +1,17 @@
 <?php
 
-namespace SwedbankPaymentPortal\CC\HPSCommunicationEntity\HPSQueryRequest;
+namespace SwedbankPaymentPortal\CC\HPSCommunicationEntity\HPSCancelRequest;
 
-use SwedbankPaymentPortal\SharedEntity\HPSQueryRequest\HPSQueryRequest as ParentHpsQueryRequest;
+use SwedbankPaymentPortal\SharedEntity\HPSCancelRequest\HPSCancelRequest as ParentHpsCancelRequest;
 use JMS\Serializer\Annotation;
 
 /**
- * Class HPSQueryRequest.
+ * Class HPSCancelRequest.
  *
  * @Annotation\XmlRoot("Request")
  * @Annotation\AccessType("public_method")
  */
-class HPSQueryRequest extends ParentHpsQueryRequest
+class HPSCancelRequest extends ParentHpsCancelRequest
 {
     /**
      * API version used.

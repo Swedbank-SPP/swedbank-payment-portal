@@ -1,27 +1,29 @@
 <?php
 
-namespace SwedbankPaymentPortal\SharedEntity\HPSQueryRequest\Transaction;
+namespace SwedbankPaymentPortal\SharedEntity\QueryRequest\Transaction;
 
 use JMS\Serializer\Annotation;
 
 /**
- * Class HPSQueryRequest.
+ * Class QueryRequest.
  *
  * @Annotation\AccessType("public_method")
  */
-class HistoricTxn
+class Reference
 {
-    /**
-     * The transaction type. The value query should be sent in this field
-     *
+    
+    /** 
+     * The transaction type. The value merchant should be sent in this field
+     
      * @var string
      *
      * @Annotation\Type("string")
      * @Annotation\AccessType("reflection")
      * @Annotation\XmlElement(cdata=false)
+     * @Annotation\XmlAttribute 
      */
-    private $method = 'query';
-
+    private $type = 'merchant';
+    
     /**
      * A 16 digit unique identifier for the transaction.
      * This reference will be used when submitting QUERY transactions to the Payment Gateway.
@@ -29,7 +31,9 @@ class HistoricTxn
      * @var string
      *
      * @Annotation\Type("string")
+     * @Annotation\XmlValue 
      * @Annotation\XmlElement(cdata=false)
+     
      */
     private $reference;
 
@@ -62,4 +66,6 @@ class HistoricTxn
     {
         $this->reference = $reference;
     }
+    
+    
 }

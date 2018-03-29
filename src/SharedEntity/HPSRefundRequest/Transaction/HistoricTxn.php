@@ -1,11 +1,11 @@
 <?php
 
-namespace SwedbankPaymentPortal\SharedEntity\HPSQueryRequest\Transaction;
+namespace SwedbankPaymentPortal\SharedEntity\HPSRefundRequest\Transaction;
 
 use JMS\Serializer\Annotation;
 
 /**
- * Class HPSQueryRequest.
+ * Class HPSRefundRequest.
  *
  * @Annotation\AccessType("public_method")
  */
@@ -20,11 +20,11 @@ class HistoricTxn
      * @Annotation\AccessType("reflection")
      * @Annotation\XmlElement(cdata=false)
      */
-    private $method = 'query';
+    private $method = 'txn_refund';
 
     /**
      * A 16 digit unique identifier for the transaction.
-     * This reference will be used when submitting QUERY transactions to the Payment Gateway.
+     * This reference will be used when submitting CANCEL transactions to the Payment Gateway.
      *
      * @var string
      *

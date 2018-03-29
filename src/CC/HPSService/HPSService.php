@@ -10,9 +10,25 @@ use SwedbankPaymentPortal\CC\HCCCommunicationEntity\HCCQueryResponse\HCCQueryRes
 use SwedbankPaymentPortal\CC\HPSCommunicationEntity\HPSQueryRequest\HPSQueryRequest;
 use SwedbankPaymentPortal\CC\HPSCommunicationEntity\HPSQueryResponse\HPSQueryResponse;
 use SwedbankPaymentPortal\CC\HPSCommunicationEntity\HPSQueryResponse\ResponseStatus;
+use SwedbankPaymentPortal\CC\HPSCommunicationEntity\HPSCancelRequest\HPSCancelRequest as queryHPSCancelRequest;
+
+use SwedbankPaymentPortal\CC\HPSCommunicationEntity\QueryRequest\QueryRequest;
+use SwedbankPaymentPortal\CC\HPSCommunicationEntity\HPSRefundRequest\HPSRefundRequest;
+
 use SwedbankPaymentPortal\CC\HPSCommunicationEntity\SetupRequest\SetupRequest;
 use SwedbankPaymentPortal\CC\HPSCommunicationEntity\SetupResponse\SetupResponse;
 use SwedbankPaymentPortal\SharedEntity\HPSQueryRequest\Transaction;
+use SwedbankPaymentPortal\SharedEntity\HPSCancelRequest\Transaction as cancelTrancsaction;
+use SwedbankPaymentPortal\SharedEntity\HPSCancelRequest\Transaction\HistoricTxn as cancelHistoricTxn;
+
+use SwedbankPaymentPortal\SharedEntity\QueryRequest\Transaction as queryTrancsaction;
+use SwedbankPaymentPortal\SharedEntity\QueryRequest\Transaction\HistoricTxn as queryHistoricTxn;
+use SwedbankPaymentPortal\SharedEntity\QueryRequest\Transaction\Reference;
+
+use SwedbankPaymentPortal\SharedEntity\HPSRefundRequest\Transaction as refundTrancsaction;
+use SwedbankPaymentPortal\SharedEntity\HPSRefundRequest\Transaction\HistoricTxn as refundHistoricTxn;
+use SwedbankPaymentPortal\SharedEntity\HPSRefundRequest\Transaction\TxnDetails;
+
 use SwedbankPaymentPortal\SharedEntity\Type\PurchaseStatus;
 use SwedbankPaymentPortal\SharedEntity\Type\TransactionResult;
 use SwedbankPaymentPortal\Transaction\TransactionContainer;
@@ -141,6 +157,77 @@ class HPSService extends AbstractService
         }
 
         return $transactionResult;
+    }
+    
+    /**
+     * Cancel transaction
+     *
+     *
+     * @param string $merchantReference
+     * @return TransactionResult
+     */
+    public function hpsCancel($merchantReference)
+    {
+        
+        $histTx = new cancelHistoricTxn($merchantReference);
+        
+        $hpsCancelQuery = new queryHPSCancelRequest(
+            $this->serviceOptions->getAuthentication(),
+            new cancelTrancsaction($histTx)
+        );
+        
+        /** @var HPSCancelResponse $response */
+        $response = $this->communication->sendHPSCancelRequest($hpsCancelQuery);
+        
+        return $response;
+    }
+    
+    /**
+     * Refund transaction
+     *
+     *
+     * @param string $reference
+     * @param string $amount
+     * @return TransactionResult
+     */
+    public function hpsRefund($reference, $amount)
+    {
+        
+        $histTx = new refundHistoricTxn($reference);
+        $txDetails = new TxnDetails($amount);
+        
+        $query = new HPSRefundRequest(
+            $this->serviceOptions->getAuthentication(),
+            new refundTrancsaction($histTx, $txDetails)
+        );
+        
+        /** @var HPSRefundResponse $response */
+        $response = $this->communication->sendHPSRefundRequest($query);
+        
+        return $response;
+    }
+    
+    /**
+     * Query transaction
+     *
+     *
+     * @param string $merchantReference
+     * @return TransactionResult
+     */
+    public function query($merchantReference)
+    {
+        
+        $histTx = new queryHistoricTxn(new Reference($merchantReference));
+        
+        $Query = new QueryRequest(
+            $this->serviceOptions->getAuthentication(),
+            new queryTrancsaction($histTx)
+        );
+        
+        /** @var QueryResponse $response */
+        $response = $this->communication->sendQueryRequest($Query);
+
+        return $response;
     }
 
 

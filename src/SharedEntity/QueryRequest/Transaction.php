@@ -1,12 +1,12 @@
 <?php
 
-namespace SwedbankPaymentPortal\SharedEntity\HPSQueryRequest;
+namespace SwedbankPaymentPortal\SharedEntity\QueryRequest;
 
 use JMS\Serializer\Annotation;
-use SwedbankPaymentPortal\SharedEntity\HPSQueryRequest\Transaction\HistoricTxn;
+use SwedbankPaymentPortal\SharedEntity\QueryRequest\Transaction\HistoricTxn;
 
 /**
- * Class HPSQueryRequest.
+ * Class QueryRequest.
  *
  * @Annotation\AccessType("public_method")
  */
@@ -18,7 +18,7 @@ class Transaction
      * @var HistoricTxn
      *
      * @Annotation\SerializedName("HistoricTxn")
-     * @Annotation\Type("SwedbankPaymentPortal\SharedEntity\HPSQueryRequest\Transaction\HistoricTxn")
+     * @Annotation\Type("SwedbankPaymentPortal\SharedEntity\QueryRequest\Transaction\HistoricTxn")
      */
     private $historicTxn;
 
