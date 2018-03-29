@@ -1137,10 +1137,6 @@ $spp = SwedbankPaymentPortal::getInstance();  // <- library usage
 
 $response = $spp->getPaymentCardHostedPagesGateway()->query($merchantReferenceId);
 
-//var_dump($response);
-$response = $spp->getPaymentCardHostedPagesGateway()->hpsCancel($response['QueryTxnResult']['datacash_reference']);
-
-//$response = $spp->getPaymentCardHostedPagesGateway()->hpsRefund($response['QueryTxnResult']['datacash_reference'], '3.23');
 
 
 ```
