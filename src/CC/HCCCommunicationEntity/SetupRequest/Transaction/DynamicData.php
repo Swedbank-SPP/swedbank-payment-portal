@@ -37,15 +37,42 @@ class DynamicData
     private $goBackLink;
 
     /**
+     * Value supplied in this field should contain “Merchant Name” as it will be displayed on the hosted page.
+     *
+     * @var string
+     *
+     * @Annotation\XmlElement(cdata=false)
+     * @Annotation\Type("string")
+     * @Annotation\SerializedName("dyn_data_2")
+     */
+    private $merchanName;
+    
+    /**
+     * Fully qualified URL for the logo to be displayed at the top left of the capture page. 
+     * Please note image should be hosted from a secure location within your own system (https).
+     *
+     * @var string
+     *
+     * @Annotation\XmlElement(cdata=false)
+     * @Annotation\Type("string")
+     * @Annotation\SerializedName("dyn_data_9")
+     */
+    private $logoUrl;
+    
+    /**
      * DynamicData constructor.
      *
      * @param string $cardHolderNameControl
      * @param string $goBackLink
+     * @param string $merchantName
+     * @param string $logoUrl
      */
-    public function __construct($cardHolderNameControl = null, $goBackLink = null)
+    public function __construct($cardHolderNameControl = null, $goBackLink = null, $merchanName = null, $logoUrl = null)
     {
         $this->cardHolderNameControl = $cardHolderNameControl;
         $this->goBackLink = $goBackLink;
+        $this->merchanName = $merchanName;
+        $this->logoUrl = $logoUrl;
     }
 
     /**
@@ -86,5 +113,45 @@ class DynamicData
     public function setGoBackLink($goBackLink)
     {
         $this->goBackLink = $goBackLink;
+    }
+
+    /**
+     * MerchantName getter.
+     *
+     * @return string
+     */
+    public function getMerchantName()
+    {
+        return $this->merchanName;
+    }
+
+    /**
+     * MerchantName setter.
+     *
+     * @param string $goBackLink
+     */
+    public function setMerchantName($merchantName)
+    {
+        $this->merchanName = $merchantName;
+    }
+    
+    /**
+     * Logo getter.
+     *
+     * @return string
+     */
+    public function getLogo()
+    {
+        return $this->logoUrl;
+    }
+
+    /**
+     * Logo setter.
+     *
+     * @param string $goBackLink
+     */
+    public function setLogo($logoUrl)
+    {
+        $this->logoUrl = $logoUrl;
     }
 }
