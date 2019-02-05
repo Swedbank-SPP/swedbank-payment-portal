@@ -27,7 +27,7 @@ This is recommended way of installation. Add dependency in your `composer.json`:
     "swedbank-spp/swedbank-payment-portal": "^0.9"
 }
 ```
-and rum "composer update" in command prompt or shell.
+and run "composer update" in command prompt or shell.
 
 Alternative you can execute "composer require swedbank-spp/swedbank-payment-portal" from your command prompt or shell.
 
@@ -1182,6 +1182,145 @@ $response = $spp->getPaymentCardHostedPagesGateway()->hpsCancel($response['Query
 
 
 ```
+
+# Refund card payment
+
+**refund.php**
+```php
+
+// in autoloader and library needed for HPS payment
+include dirname(__FILE__) . '/SwedbankPaymentPortal/vendor/autoload.php';
+
+use SwedbankPaymentPortal\Options\CommunicationOptions;
+use SwedbankPaymentPortal\Options\ServiceOptions;
+use SwedbankPaymentPortal\SharedEntity\Authentication;
+use SwedbankPaymentPortal\SwedbankPaymentPortal;
+
+
+$auth = new Authentication('***********','***********'); // VtID and password
+
+//Merchant referance was used for payment
+$merchantReferenceId = 'XXXXXXXXXXXXXXX';
+
+$options = new ServiceOptions(
+    new CommunicationOptions(
+        'https://accreditation.datacash.com/Transaction/acq_a' //this is test environment
+    // for production/live use this URL: https://mars.transaction.datacash.com/Transaction
+    ),
+    $auth
+);
+
+SwedbankPaymentPortal::init($options);  // <- library  initiation
+$spp = SwedbankPaymentPortal::getInstance();  // <- library usage
+
+$response = $spp->getPaymentCardHostedPagesGateway()->query($merchantReferenceId);
+
+$ref = $response['QueryTxnResult']['datacash_reference'];
+var_dump($ref); //string(16) "3400900025177762"
+
+$amount = $response['QueryTxnResult']['amount'];
+var_dump($amount); //string(5) "10.00"
+
+//
+$response = $spp->getPaymentCardHostedPagesGateway()->hpsRefund($ref, '0.50');
+//Read parameter "status" if status == ACCEPTED then OK else failed
+var_dump($response);
+/*
+ array(10) {
+  ["@attributes"]=>
+  array(1) {
+    ["version"]=>
+    string(1) "2"
+  }
+  ["MAC"]=>
+  array(1) {
+    ["outcome"]=>
+    string(6) "ACCEPT"
+  }
+  ["acquirer"]=>
+  string(22) "Swedbank Baltic Latvia"
+  ["datacash_reference"]=>
+  string(16) "3300900025177767"
+  ["merchantreference"]=>
+  string(16) "3400900025177762"
+  ["mid"]=>
+  string(10) "1000000000"
+  ["mode"]=>
+  string(4) "LIVE"
+  ["reason"]=>
+  string(8) "ACCEPTED"
+  ["status"]=>
+  string(1) "1"
+  ["time"]=>
+  string(10) "1549357106"
+}
+ */
+
+$response = $spp->getPaymentCardHostedPagesGateway()->hpsRefund($ref, '15.00');
+
+var_dump($response);
+//Read parameter "status" if status == ACCEPTED then OK else failed
+/*
+ array(7) {
+  ["@attributes"]=>
+  array(1) {
+    ["version"]=>
+    string(1) "2"
+  }
+  ["datacash_reference"]=>
+  string(16) "3900900025177769"
+  ["merchantreference"]=>
+  string(16) "3400900025177762"
+  ["mode"]=>
+  string(4) "LIVE"
+  ["reason"]=>
+  string(26) "Refund amount > orig 10.00"
+  ["status"]=>
+  string(2) "34"
+  ["time"]=>
+  string(10) "1549357108"
+}
+ */
+
+$response = $spp->getPaymentCardHostedPagesGateway()->hpsRefund($ref, '2.00');
+//Read parameter "status" if status == ACCEPTED then OK else failed
+var_dump($response);
+/*
+ array(10) {
+  ["@attributes"]=>
+  array(1) {
+    ["version"]=>
+    string(1) "2"
+  }
+  ["MAC"]=>
+  array(1) {
+    ["outcome"]=>
+    string(6) "ACCEPT"
+  }
+  ["acquirer"]=>
+  string(22) "Swedbank Baltic Latvia"
+  ["datacash_reference"]=>
+  string(16) "3700900025177770"
+  ["merchantreference"]=>
+  string(16) "3400900025177762"
+  ["mid"]=>
+  string(10) "1000000000"
+  ["mode"]=>
+  string(4) "LIVE"
+  ["reason"]=>
+  string(8) "ACCEPTED"
+  ["status"]=>
+  string(1) "1"
+  ["time"]=>
+  string(10) "1549357108"
+}
+ */
+
+
+
+
+```
+
 
 
 
