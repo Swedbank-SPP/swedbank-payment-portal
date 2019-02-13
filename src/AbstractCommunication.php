@@ -107,7 +107,14 @@ class AbstractCommunication
         
         if($returnArray){
             $xml = simplexml_load_string( $rawResponse , null , LIBXML_NOCDATA ); 
-            $json = json_encode($xml); 
+            $json = json_encode($xml);
+            $this->logger->logData(
+                $this->dataCleanup->cleanUpRequestXml($requestXml),
+                $rawResponse,
+                $this->dataCleanup->cleanUpRequest($request),
+                null,
+                $type
+            );
             return json_decode($json,TRUE);
         } else {
             $response = $this->serializer->getObject($rawResponse, $responseClass);
