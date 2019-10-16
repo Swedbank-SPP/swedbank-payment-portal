@@ -304,7 +304,7 @@ class HPSService extends AbstractService
             return TransactionResult::failure();
         }
 
-        if (!$response->getHpsTxn() || count($response->getHpsTxn()->getAuthAttempts()) == 0) {
+        if (!$response->getHpsTxn() || count($response->getHpsTxn()->getAuthAttempts()) == 0 || $response->getStatus() == PurchaseStatus::HpsQueringTransactionWHereCustomerBeenSentForAcsValidation()) {
             return TransactionResult::unfinished();
         }
 
