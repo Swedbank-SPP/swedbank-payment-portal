@@ -112,6 +112,7 @@ It is recommended that the following scenarios are tested as a minimum:
 + Successful Authorisation including 3-D Secure authentication with different amounts
 + Unsuccessful Authorisation
 + Failed 3-D Secure authentication
+
 Each merchant must ensure the interaction between the Payment Gateway and their own e-commerce system is behaving as expected.
 
 Below are card numbers that are behaving on a predefined way. They are an excellent help when integrating and in testing/debugging of various scenarios.
