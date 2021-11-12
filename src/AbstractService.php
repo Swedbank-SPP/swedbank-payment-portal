@@ -12,7 +12,7 @@ use SwedbankPaymentPortal\Options\ServiceOptions;
  */
 abstract class AbstractService
 {
-    private $TRANSACTION_TTL_IN_HOURS = 72; // 3 days.
+    private $TRANSACTION_TTL_IN_HOURS = 6;
     /**
      * @var TransactionRepositoryInterface
      */
