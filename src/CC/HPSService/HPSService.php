@@ -143,7 +143,9 @@ class HPSService extends AbstractService
 
             if ($transactionResult === TransactionResult::success()) {
 
-                $response = $this->getTransactionInformation($response->getHpsTxn()->getAuthAttempts()[0]->getDataCashReference());
+                $authAttempts = $response->getHpsTxn()->getAuthAttempts();
+
+                $response = $this->getTransactionInformation($authAttempts[count($authAttempts)-1]->getDataCashReference());
 
                 $paymentCardTransactionData = PaymentCardTransactionData::createFromHCCQueryResponse($response);
 
