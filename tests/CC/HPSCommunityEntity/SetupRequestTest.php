@@ -30,7 +30,7 @@ class SetupRequestTest extends AbstractCommunicationEntityTest
      */
     public function testSetupRequest()
     {
-        $authentication = new Authentication(88120987, 'gDarz27q');
+        $authentication = new Authentication( '', '');
         $customerDetails = new CustomerDetails(
             new BillingDetails(
                 'testpro',
